@@ -5,4 +5,7 @@ This folder contains a database and dataset imported from [this kaggle dataset](
 
 - This database is updated daily as of writing this (13/03/2023)
 
-This file contains a directory called `csv` which contains CSV files imported from the above link and also an `nba.sqlite` file for the relational database
+This file locally contains a directory called `data/csv` which contains CSV files imported from the above link and also an `nba.sqlite` file for the relational database
+
+    - This directory is ignored in the `.gitignore` because of its size
+    
