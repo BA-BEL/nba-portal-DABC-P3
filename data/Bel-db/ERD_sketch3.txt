@@ -1,0 +1,40 @@
+
+
+game
+-
+game_id int pk
+game_date datetime
+___
+(imported_from_team_details)
+arena varchar
+_
+(imported_from_game_info)
+attendance int
+__
+team_id_home int 
+team_id_away int 
+team_name_home varchar
+team_abbreviation_home varchar
+team_name_away varchar
+team_abbreviation_away varchar
+matchup_home varchar
+wl_home varchar
+wl_away varchar
+fgm_home int
+fga_home int
+fg_pct_home int
+ftm_home int
+fta_home int
+ft_pct_home int
+pts_home int
+fgm_away int
+fga_away int
+fg_pct_away int
+ftm_away int
+fta_away int
+ft_pct_away int
+pts_away int
+
+
+
+
