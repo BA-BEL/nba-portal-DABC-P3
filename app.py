@@ -28,7 +28,7 @@ def home():
         f"/api/v1.0/players<br/>"
     )
 
-@app.route("/api/v1.0/players")
+@app.route("/api/v1.0/players", methods = ['GET','POST'])
 def get_player_stats():
     
     session = Session(engine)
@@ -41,12 +41,16 @@ def get_player_stats():
         player_dict['Team']=player[2]
         player_dict['Position']=player[3]
         players_dict_list.append(player_dict)
-    return jsonify(players_dict_list)
 
+    response = jsonify(players_dict_list)
+
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
     
     
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port = 8000)
