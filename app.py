@@ -12,10 +12,10 @@ engine1 = create_engine("sqlite:///data/player_stats.sqlite")
 Base = automap_base()
 Base.prepare(autoload_with=engine1)
 
-#Teams database setup
-engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
-Base2 = automap_base()
-Base2.prepare(autoload_with=engine2)
+# #Teams database setup
+# engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
+# Base2 = automap_base()
+# Base2.prepare(autoload_with=engine2)
 
 # **Sets up our tables**
 player_stats = Base.classes.player_stats
@@ -27,11 +27,7 @@ app.config['JSON_SORT_KEYS'] = False
 # Flask Routes
 @app.route("/")
 def home():
-    return (
-        f"Welcome to the NBA API!<br/>"
-        f"Available Routes:<br/>"
-        f"/api/v1.0/players<br/>"
-    )
+    return render_template('index.html')
 
 @app.route("/api/v1.0/players", methods = ['GET','POST'])
 def get_player_stats():
@@ -71,4 +67,4 @@ def get_player_stats():
     
     
 if __name__ == "__main__":
-    app.run(debug=True, port = 8000)
+    app.run(debug=True, port=8000)
