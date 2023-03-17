@@ -5,7 +5,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-from flask import Flask, jsonify, render_template
+from flask import Flask, url_for, jsonify, render_template
 import datetime as dt
 
 #Player database setup
@@ -14,31 +14,22 @@ Base = automap_base()
 Base.prepare(autoload_with=engine1)
 
 # #Teams database setup
-# engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
-# Base2 = automap_base()
-# Base2.prepare(autoload_with=engine2)
+engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
+Base2 = automap_base()
+Base2.prepare(autoload_with=engine2)
 
 # **Sets up our tables**
 player_stats = Base.classes.player_stats
 games = Base2.classes.games
 
 # Flask Setup
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config['JSON_SORT_KEYS'] = False
 
 # Flask Routes
 @app.route("/")
 def home():
-<<<<<<< HEAD
     return render_template('index.html')
-=======
-    return (
-        f"Welcome to the NBA API!<br/>"
-        f"Available Routes:<br/>"
-        f"/api/v1.0/players<br/>"
-        f"/api/v1.0/games<br/>"
-    )
->>>>>>> 339dbbbe915c933c72982d367e4f81a6d0e60abe
 
 @app.route("/api/v1.0/players", methods = ['GET','POST'])
 def get_player_stats():

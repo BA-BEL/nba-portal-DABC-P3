@@ -1,0 +1,176 @@
+:root {
+    --primary-color: #02007e;
+    --body-color: #f9f9f9;
+    --text-color: #080808;
+    --text-color-dark: #242738;
+    --white-color: #ffffff;
+    --light-color: #f8f9fa;
+    --font-family: Lato;
+  }
+  
+  body {
+    line-height: 1.5;
+    font-family: sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    color: black;
+    background-color: rgb(231, 229, 229);
+  }
+  section {
+    padding-left: 15%;
+    padding-right:15%;
+    padding-top:5%;
+
+  }
+  p {
+    color: var(--text-color);
+    font-size: 15px
+  }
+  
+  h1,
+  h2{
+    color: var(--text-color-dark);
+    font-family: var(--font-family), sans-serif;
+    font-weight: 700;
+    line-height: 1.2
+  }
+  
+  h1,
+  .h1 {
+    font-size: 45px
+  }
+  
+  h2,
+  .h2 {
+    font-size: 32px
+  }
+
+
+  
+  @media(max-width:768px) {
+    .section {
+      padding-top: 60px
+    }
+  }
+  
+  .section-sm {
+    padding-top: 60px;
+    padding-bottom: 60px
+  }
+  
+  @media(max-width:768px) {
+    .section-sm {
+      padding-top: 40px
+    }
+  }
+  
+  .section-title {
+    margin-bottom: 40px
+  }
+  
+  .bg-cover {
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat
+  }
+  
+  .border-primary {
+    border-color: #f2f2f2 !important
+  }
+  
+  pre {
+    padding: 20px
+  }
+  
+  .overlay {
+    position: relative
+  }
+  
+  .overlay::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+    opacity: .8
+  }
+  
+  .outline-0 {
+    outline: 0 !important
+  }
+  
+  .d-unset {
+    display: unset !important
+  }
+  
+  .bg-primary {
+    background: var(--primary-color) !important
+  }
+  
+  .bg-white {
+    background-color: var(--white-color) !important
+  }
+  
+  .bg-light {
+    background-color: var(--light-color) !important
+  }
+  
+  .text-primary {
+    color: var(--primary-color) !important
+  }
+  
+  .text-color {
+    color: var(--text-color) !important
+  }
+  
+  .text-dark {
+    color: var(--text-color-dark) !important
+  }
+  
+  .text-white {
+    color: var(--white-color) !important
+  }
+  
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px
+  }
+  
+  .banner {
+    overflow: hidden
+  }
+  
+  .banner p {
+    font-size: 20px;
+    opacity: .8
+  }
+
+  .form-control {
+    height: 50px;
+    border-radius: 25px;
+    border: 0;
+    padding: 0 20px
+  }
+  
+  .form-control:focus {
+    border: 0;
+    box-shadow: none !important
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+    font-size: 14px
+  }
+  
+
+
+  
+
+  
+
+  
+ 
