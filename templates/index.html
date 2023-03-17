@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Stats Portal!!</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
+   	<!-- themefy-icon -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/themify-icons/themify-icons.css') }}">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
+
+</head>
+<body>
+	<!-- header -->
+	<header class="banner overlay bg-cover" data-background="{{ url_for('static', filename='images/nba.jpeg') }}">
+		
+		<!-- banner -->
+		<div class="container section">
+			<div class="row">
+				<div class="col-lg-8 text-center mx-auto">
+					<h1 class="text-white mb-3">NBA Stats Portal &amp; Knowledge base!</h1>
+					<p class="text-white mb-4">Find advice and answers from our support team fast or get in touch</p>
+					<div class="position-relative">
+						<input id="search" class="form-control" placeholder="Enter your favourite team here"><i
+							class="ti-search search-icon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+    <section>
+        <h2>Search our database</h2>
+        <p>Here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go </p>
+        <button type="button" class="btn btn-danger btn-lg btn-block">Let me search players</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block">Let me search games</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block">Let me search teams</button>
+    </section>
+
+	<!-- ** JS Plugins Needed for the Project ** -->
+	<!-- jquiry -->
+	<script type="text/javascript" src="{{ url_for('static', filename='plugins/jquery/jquery-1.12.4.js') }}"></script>
+	<!-- Bootstrap JS -->
+	<script type="text/javascript" src="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.js') }}"></script>
+	<!-- match-height JS -->
+	<script type="text/javascript" src="{{ url_for('static', filename='plugins/match-height/jquery.matchHeight-min.js') }}"></script>
+
+    <!-- Our JS -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+
+</body>
+</html>
