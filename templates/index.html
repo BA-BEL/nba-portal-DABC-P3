@@ -23,10 +23,13 @@
 				<div class="col-lg-8 text-center mx-auto">
 					<h1 class="text-white mb-3">NBA stats centre &amp; knowledge base!</h1>
 					<p class="text-white mb-4">Find advice and answers from our support team fast or get in touch</p>
+					<form method="POST" action="/search">
 					<div class="position-relative">
-						<input id="search" class="form-control" placeholder="Enter your favourite team here"><i
+						<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter your favourite team here"><i
 							class="ti-search search-icon"></i>
 					</div>
+					<button type="submit" class="btn btn-primary mt-3">Search</button>
+					</form>
 				</div>
 			</div>
 		</div>
