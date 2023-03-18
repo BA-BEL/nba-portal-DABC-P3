@@ -139,30 +139,44 @@ function testfunc2(data){
 
 function ptsplot(data){
 
-    let dates = [];
-    let pts_home = [];
-    let pts_away = [];
+    // let dates = [];
+    // let pts_home = [];
+    // let pts_away = [];
 
-    for(let i = 0; i < data.length; i++){
-        dates.push(data[i].game_date);
-        pts_home.push(data[i].pts_home);
-        pts_away.push(data[i].pts_away);
-    }
+    // for(let i = 0; i < data.length; i++){
 
 
+
+    //     dates.push(data[i].game_date);
+    //     pts_home.push(data[i].pts_home);
+    //     pts_away.push(data[i].pts_away);
+    // }
+
+    const home_data = data.map(item => {
+        return {
+            x:moment(item.game_date, "YYYY-MM-DD"),
+            y:item.pts_home
+        };
+    });
+
+    const away_data = data.map(item => {
+        return {
+            x:moment(item.game_date, "YYYY-MM-DD"),
+            y:item.pts_away
+        };
+    });
 
     const data_to_plot = {
-        labels: dates,
         datasets:[{
             label:"Home Points",
-            data:pts_home,
+            data:home_data,
             fill:false,
             borderColor: 'rgb(255, 0, 0)',
             tension: 0.1
         },
         {
             label:"Away Points",
-            data:pts_away,
+            data:away_data,
             fill:false,
             borderColor: 'rgb(0, 0, 255)',
             tension: 0.1
@@ -190,8 +204,16 @@ function ptsplot(data){
                 }   
             },
             scales: {
-                x:{
-                    type: "timeseries"
+                x: {
+                    type: 'time',
+                    time: {
+                      unit: 'month',
+                      displayFormats: {month:"MMM YYYY"}
+                    },
+                    title: {
+                      display: true,
+                      text: 'Date'
+                    }
                 },
                 y: {
                   type: 'linear',
@@ -218,6 +240,6 @@ function ptsplot(data){
     console.log("finished running function");
 }
 
-d3.json("http://127.0.0.1:8000/api/v1.0/games").then(ptsplot)
+
 
 
