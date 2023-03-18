@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA Stats Portal!!</title>
+    <title>NBA Stats Portal</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
    	<!-- themefy-icon -->
@@ -21,23 +21,26 @@
 		<div class="container section">
 			<div class="row">
 				<div class="col-lg-8 text-center mx-auto">
-					<h1 class="text-white mb-3">NBA Stats Portal &amp; Knowledge base!</h1>
+					<h1 class="text-white mb-3">NBA stats centre &amp; knowledge base!</h1>
 					<p class="text-white mb-4">Find advice and answers from our support team fast or get in touch</p>
+					<form method="POST" action="/search">
 					<div class="position-relative">
-						<input id="search" class="form-control" placeholder="Enter your favourite team here"><i
+						<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter your favourite team here"><i
 							class="ti-search search-icon"></i>
 					</div>
+					<button type="submit" class="btn btn-primary mt-3">Search</button>
+					</form>
 				</div>
 			</div>
 		</div>
 
 	</header>
-    <section>
+    <section id="section1">
         <h2>Search our database</h2>
-        <p>Here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go </p>
-        <button type="button" class="btn btn-danger btn-lg btn-block">Let me search players</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Let me search games</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">Let me search teams</button>
+       <p> Here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go here we go</p>
+		<button type="button" class="btn btn-danger btn-lg btn-block">Let me search players</button>
+		<button type="button" class="btn btn-secondary btn-lg btn-block">Let me search games</button>
+		<button type="button" class="btn btn-primary btn-lg btn-block">Let me search teams</button>
     </section>
 
 	<!-- ** JS Plugins Needed for the Project ** -->

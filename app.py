@@ -5,7 +5,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-from flask import Flask, url_for, jsonify, render_template
+from flask import Flask, url_for, jsonify, render_template, request, abort, make_response
 import datetime as dt
 
 #Player database setup
@@ -26,11 +26,12 @@ games = Base2.classes.games
 app = Flask(__name__, static_folder='static')
 app.config['JSON_SORT_KEYS'] = False
 
-# Flask Routes
-@app.route("/")
+# A. FLASK HOMEROUTE
+@app.route("/",methods=['GET','POST'])
 def home():
     return render_template('index.html')
 
+# B. API ENDPOINT FOR ALL PLAYER STATS FOR DROPDOWN PAGE
 @app.route("/api/v1.0/players", methods = ['GET','POST'])
 def get_player_stats():
     
@@ -69,6 +70,39 @@ def get_player_stats():
     
     return response
 
+# C. API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION (IN PROGRESS - GAVIN)
+@app.route("/api/v1.0/players/team/<team_name>",methods=['GET'])
+def get_players_by_team(team_name):
+    session = Session(engine1)
+    teamplayerquery = session.query(player_stats.Player, 
+    player_stats.Position, 
+    player_stats.Age).filter(player_stats.Team == team_name).all()
+    
+    if not teamplayerquery:
+        abort(404)
+    
+    teamplayers = []
+    for player in teamplayerquery:
+        teamplayer={}
+        teamplayer['Name']=player[0]
+        teamplayer['Position']=player[1]
+        teamplayer['Age']=player[2]
+        teamplayers.append(teamplayer)
+    response = make_response(jsonify({'team_players':teamplayers}))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+@app.route('/search',methods=['POST'])
+def search_players_by_team():
+    team_name = request.form['team_name']
+    players = get_players_by_team(team_name)
+    if not players:
+        abort(404)
+    else:
+        return players
+
+
+# D. API ENDPOINT FOR BEL'S GAME DATA ANALYSIS:
 @app.route("/api/v1.0/games", methods = ['GET','POST'])
 def get_team_stats():
     
