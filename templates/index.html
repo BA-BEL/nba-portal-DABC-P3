@@ -7,8 +7,6 @@
     <title>NBA Stats Portal</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
-   	<!-- themefy-icon -->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/themify-icons/themify-icons.css') }}">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
 
@@ -22,7 +20,7 @@
 			<div class="row">
 				<div class="col-lg-8 text-center mx-auto">
 					<h1 class="text-white mb-3">NBA stats centre &amp; knowledge base!</h1>
-					<p class="text-white mb-4">Find advice and answers from our support team fast or get in touch</p>
+					<p class="text-white mb-4">Find out who's currently on your team's roster here. Or click below to access our full NBA compendium </p>
 					<form method="POST" action="/search">
 					<div class="position-relative">
 						<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter your favourite team here"><i
@@ -48,8 +46,8 @@
 	<script type="text/javascript" src="{{ url_for('static', filename='plugins/jquery/jquery-1.12.4.js') }}"></script>
 	<!-- Bootstrap JS -->
 	<script type="text/javascript" src="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.js') }}"></script>
-	<!-- match-height JS -->
-	<script type="text/javascript" src="{{ url_for('static', filename='plugins/match-height/jquery.matchHeight-min.js') }}"></script>
+
+
 
     <!-- Our JS -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>

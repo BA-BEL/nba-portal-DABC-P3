@@ -73,7 +73,7 @@
   }
   .border-primary {
     border-color: #f2f2f2 !important
-  }
+  } 
   pre {
     padding: 20px
   }
@@ -127,7 +127,7 @@
   
   .text-white {
     color: var(--white-color) !important
-  }
+  } 
 
   .section {
     padding-top: 80px;
@@ -135,7 +135,8 @@
   }
   
   .banner {
-    overflow: hidden
+    overflow: hidden;
+    height: 25%;
   }
   
   .banner p {
