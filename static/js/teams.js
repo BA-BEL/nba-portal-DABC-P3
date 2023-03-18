@@ -107,6 +107,18 @@ function testfunc2(data){
     };
 
 
+    const actions = [
+        {
+          name: 'Randomize',
+          handler(chart) {
+            chart.data.datasets.forEach(dataset => {
+              dataset.data = Utils.numbers({count: chart.data.labels.length, min: 0, max: 100});
+            });
+            chart.update();
+          }
+        }
+    ]
+
     const data_to_plot = {
         labels: ["Home","Away"],
         datasets:datasets,
