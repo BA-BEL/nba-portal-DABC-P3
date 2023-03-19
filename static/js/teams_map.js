@@ -14,6 +14,8 @@ let southwestLayer = L.layerGroup();
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(myMap);
 
+  let openPopup = null;
+
   d3.json('http://127.0.0.1:8000/api/v1.0/teams').then(function(data){
     console.log(data);
 
@@ -36,10 +38,33 @@ let southwestLayer = L.layerGroup();
         fillOpacity:0.5
       });
       
-      circle.bindPopup("<h3>"+team.Franchise+"</h3><hr>Established: "+team.Established+"<br>Division: "+
+      let popupContent = "<h3>"+team.Franchise+"</h3><hr>Established: "+team.Established+"<br>Division: "+
       team.Division+"<br>Current Conference Ranking: "+team.Current_Conference_Rank+"<hr>Next Home Game: "+team.Next_Homegame+
-      "<br>Average ticket price next home: $"+team.Current_Average_Price);
-    
+      "<br>Average ticket price next home: $"+team.Current_Average_Price;
+
+      let popup=L.popup().setLatLng([team.Latitude,team.Longitude]).setContent(popupContent)
+
+      circle.bindTooltip(popupContent).openTooltip();
+
+      circle.on('click',function(e){
+        if (openPopup) {
+          myMap.closePopup(openPopup)
+        }
+        myMap.flyTo(e.latlng,myMap.getZoom()+4);
+        popup.openOn(myMap);
+        openpOPUP = popup;
+      });
+
+      circle.on('mouseover',onMouseOver);
+      
+      
+      myMap.on('click',function(e){
+        if (openPopup) {
+          myMap.closePopup(openPopup);
+          myMap.setView([37.8, -96], 3);
+          openPopup = null;
+        }
+      });
 
       if (team.Division === "Atlantic") {
         atlanticLayer.addLayer(circle);
@@ -73,6 +98,12 @@ let southwestLayer = L.layerGroup();
     };
     
     L.control.layers(null, overlayMaps).addTo(myMap);
+
+    function onMouseOver(e) {
+      var layer = e.target;
+      layer.openTooltip();
+    }
+
   });
 
 
