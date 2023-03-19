@@ -1,0 +1,31 @@
+team_id,season_year,team_name,team_conference,team_division,wins,losses,conf_rank,established
+1610612737,2022-23,Atlanta Hawks,East,Southeast,32,32,8,1949
+1610612738,2022-23,Boston Celtics,East,Atlantic,45,20,2,1946
+1610612739,2022-23,Cleveland Cavaliers,East,Central,40,26,4,1970
+1610612740,2022-23,New Orleans Pelicans,West,Southwest,31,33,9,2002
+1610612741,2022-23,Chicago Bulls,East,Central,29,36,12,1966
+1610612742,2022-23,Dallas Mavericks,West,Southwest,33,32,7,1980
+1610612743,2022-23,Denver Nuggets,West,Northwest,45,19,1,1976
+1610612744,2022-23,Golden State Warriors,West,Pacific,34,31,5,1946
+1610612745,2022-23,Houston Rockets,West,Southwest,15,49,15,1967
+1610612746,2022-23,LA Clippers,West,Pacific,34,33,8,1970
+1610612747,2022-23,Los Angeles Lakers,West,Pacific,31,34,11,1948
+1610612748,2022-23,Miami Heat,East,Southeast,34,31,7,1988
+1610612749,2022-23,Milwaukee Bucks,East,Central,46,18,1,1968
+1610612750,2022-23,Minnesota Timberwolves,West,Northwest,34,32,6,1989
+1610612751,2022-23,Brooklyn Nets,East,Atlantic,36,28,6,1976
+1610612752,2022-23,New York Knicks,East,Atlantic,39,27,5,1946
+1610612753,2022-23,Orlando Magic,East,Southeast,27,38,13,1989
+1610612754,2022-23,Indiana Pacers,East,Central,29,36,11,1976
+1610612755,2022-23,Philadelphia 76ers,East,Atlantic,41,22,3,1949
+1610612756,2022-23,Phoenix Suns,West,Pacific,36,29,4,1968
+1610612757,2022-23,Portland Trail Blazers,West,Northwest,30,34,13,1970
+1610612758,2022-23,Sacramento Kings,West,Pacific,37,26,3,1948
+1610612759,2022-23,San Antonio Spurs,West,Southwest,16,49,14,1976
+1610612760,2022-23,Oklahoma City Thunder,West,Northwest,30,34,12,1967
+1610612764,2022-23,Washington Wizards,East,Southeast,30,34,10,1961
+1610612765,2022-23,Detroit Pistons,East,Central,15,49,15,1948
+1610612766,2022-23,Charlotte Hornets,East,Southeast,20,46,14,1988
+1610612767,2022-23,Toronto Raptors,East,Atlantic,33,36,9,1995
+1610612768,2022-23,Memphis Grizzlies,West,Southwest,41,26,2,1995
+1610612769,2022-23,Utah Jazz,West,Northwest,33,36,11,1974
