@@ -5,15 +5,16 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-from flask import Flask, url_for, jsonify, render_template, request, abort, make_response
+from flask import Flask, url_for, jsonify, render_template, request, abort, make_response,redirect
 import datetime as dt
+import requests
 
 #Player database setup
 engine1 = create_engine("sqlite:///data/player_stats.sqlite")
 Base = automap_base()
 Base.prepare(autoload_with=engine1)
 
-# #Teams database setup
+# #Games database setup
 engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
 Base2 = automap_base()
 Base2.prepare(autoload_with=engine2)
@@ -71,12 +72,21 @@ def get_player_stats():
     return response
 
 # C. API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION (IN PROGRESS - GAVIN)
-@app.route("/api/v1.0/players/team/<team_name>",methods=['GET'])
-def get_players_by_team(team_name):
+team_dict = {
+    'Atlanta Hawks': 'ATL','Boston Celtics': 'BOS','Brooklyn Nets': 'BKN','Charlotte Hornets': 'CHA','Chicago Bulls': 'CHI',
+    'Cleveland Cavaliers': 'CLE','Dallas Mavericks': 'DAL','Denver Nuggets': 'DEN','Detroit Pistons': 'DET',
+    'Golden State Warriors': 'GSW','Houston Rockets': 'HOU','Indiana Pacers': 'IND','Los Angeles Clippers': 'LAC','Los Angeles Lakers': 'LAL',
+    'Memphis Grizzlies': 'MEM','Miami Heat': 'MIA','Milwaukee Bucks': 'MIL','Minnesota Timberwolves': 'MIN','New Orleans Pelicans': 'NOP',
+    'New York Knicks': 'NYK','Oklahoma City Thunder': 'OKC','Orlando Magic': 'ORL','Philadelphia 76ers': 'PHI','Phoenix Suns': 'PHX',
+    'Portland Trail Blazers': 'POR','Sacramento Kings': 'SAC','San Antonio Spurs': 'SAS','Toronto Raptors': 'TOR','Utah Jazz': 'UTA',
+    'Washington Wizards': 'WAS'
+}
+@app.route("/api/v1.0/players/team/<team_code>",methods=['GET'])
+def get_players_by_team(team_code):
     session = Session(engine1)
     teamplayerquery = session.query(player_stats.Player, 
     player_stats.Position, 
-    player_stats.Age).filter(player_stats.Team == team_name).all()
+    player_stats.Age).filter(player_stats.Team == team_code).all()
     
     if not teamplayerquery:
         abort(404)
@@ -88,14 +98,17 @@ def get_players_by_team(team_name):
         teamplayer['Position']=player[1]
         teamplayer['Age']=player[2]
         teamplayers.append(teamplayer)
-    response = make_response(jsonify({'team_players':teamplayers}))
+    response = make_response(jsonify({'Roster':teamplayers}))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @app.route('/search',methods=['POST'])
 def search_players_by_team():
     team_name = request.form['team_name']
-    players = get_players_by_team(team_name)
+    team_code = team_dict.get(team_name)
+    if not team_code:
+        abort(404)
+    players = get_players_by_team(team_code)
     if not players:
         abort(404)
     else:
