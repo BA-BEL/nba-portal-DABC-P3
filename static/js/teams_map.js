@@ -1,6 +1,6 @@
 let myMap = L.map("map-id",{
   center: [37.8, -96],
-  zoom: 4
+  zoom: 5
 });
 
 let atlanticLayer = L.layerGroup();
@@ -19,23 +19,89 @@ let southwestLayer = L.layerGroup();
   d3.json('http://127.0.0.1:8000/api/v1.0/teams').then(function(data){
     console.log(data);
 
-    let divColors = {
-      "Southeast":"crimson",
-      "Central":"greenyellow",
-      "Southwest":"dodgerblue",
-      "Northwest":"purple",
-      "Pacific":"aqua",
-      "Atlantic":"darkorange"
-    };
+    // let divColors = {
+    //   "Southeast":"blue",
+    //   "Central":"navy",
+    //   "Southwest":"crimson",
+    //   "Northwest":"tomato",
+    //   "Pacific":"red",
+    //   "Atlantic":"deepskyblue"
+    // };
+
+    let teamColors = {
+      "Atlanta Hawks":"red",
+      "Boston Celtics": "green",
+      "Cleveland Cavaliers": "maroon",
+      "New Orleans Pelicans":"navy",
+      "Chicago Bulls":"firebrick",
+      "Dallas Mavericks":"mediumblue",
+      "Denver Nuggets":"navy",
+      "Golden State Warriors":"blue",
+      "Houston Rockets":"red",
+      "Los Angeles Clippers":"white",
+      "Los Angeles Lakers":"gold",
+      "Miami Heat":"black",
+      "Milwaukee Bucks":"darkgreen",
+      "Minnesota Timberwolves":"steelblue",
+      "Brooklyn Nets":"black",
+      "New York Knicks":"blue",
+      "Orlando Magic":"blue",
+      "Indiana Pacers":"gold",
+      "Philadelphia 76ers":"white",
+      "Phoenix Suns":"purple",
+      "Portland Trail Blazers":"red",
+      "Sacramento Kings":"purple",
+      "San Antonio Spurs":"silver",
+      "Oklahoma City Thunder":"dodgerblue",
+      "Washington Wizards":"navy",
+      "Detroit Pistons": "crimson",
+      "Charlotte Hornets":"teal",
+      "Toronto Raptors":"purple",
+      "Memphis Grizzlies":"lightsteelblue",
+      "Utah Jazz":"gold"
+    }
+
+    let teamOuters = {
+      "Atlanta Hawks":"gold",
+      "Boston Celtics": "white",
+      "Cleveland Cavaliers": "darkgoldenrod",
+      "New Orleans Pelicans":"darkgoldenrod",
+      "Chicago Bulls":"black",
+      "Dallas Mavericks":"grey",
+      "Denver Nuggets":"lightblue",
+      "Golden State Warriors":"gold",
+      "Houston Rockets":"grey",
+      "Los Angeles Clippers":"darkblue",
+      "Los Angeles Lakers":"purple",
+      "Miami Heat":"red",
+      "Milwaukee Bucks":"beige",
+      "Minnesota Timberwolves":"grey",
+      "Brooklyn Nets":"white",
+      "New York Knicks":"orange",
+      "Orlando Magic":"grey",
+      "Indiana Pacers":"navy",
+      "Philadelphia 76ers":"blue",
+      "Phoenix Suns":"orange",
+      "Portland Trail Blazers":"grey",
+      "Sacramento Kings":"silver",
+      "San Antonio Spurs":"black",
+      "Oklahoma City Thunder":"orange",
+      "Washington Wizards":"red",
+      "Detroit Pistons": "black",
+      "Charlotte Hornets":"purple",
+      "Toronto Raptors":"red",
+      "Memphis Grizzlies":"grey",
+      "Utah Jazz":"grey"
+    }
 
 
     data.forEach(function(team){
       let circle = L.circle([team.Latitude, team.Longitude],{
-        radius: 80000,
-        color: "black",
-        weight: 2,
-        fillColor:divColors[team.Division],
-        fillOpacity:0.5
+        radius: 50000,
+        color: teamOuters[team.Franchise],
+        weight: 5,
+        fillColor:teamColors[team.Franchise],
+        fillOpacity:0.9
       });
       
       let popupContent = "<h3>"+team.Franchise+"</h3><hr>Established: "+team.Established+"<br>Division: "+
@@ -49,7 +115,7 @@ let southwestLayer = L.layerGroup();
       circle.on('click',function(e){
         if (openPopup) {
           myMap.closePopup(openPopup)
-        }
+        };
         myMap.flyTo(e.latlng,myMap.getZoom()+4);
         popup.openOn(myMap);
         openpOPUP = popup;
@@ -83,9 +149,9 @@ let southwestLayer = L.layerGroup();
 
     atlanticLayer.addTo(myMap);
     centralLayer.addTo(myMap);
+    southeastLayer.addTo(myMap);
     northwestLayer.addTo(myMap);
     pacificLayer.addTo(myMap);
-    southeastLayer.addTo(myMap);
     southwestLayer.addTo(myMap);
   
     var overlayMaps = {
