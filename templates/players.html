@@ -13,9 +13,7 @@
      crossorigin=""/>
     <!-- Plotly Script -->
     <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
-
     
-
 </head>
 
 
@@ -71,13 +69,17 @@
         </div>
       </div>
 
-      <div class="background-image"></div>
+      <!-- <div class="background-image"></div> -->
+      <div class="bg-image"></div>
+
+
+
 
 
       
 </body>
 
-<style>
+<!-- <style> -->
   * {
       margin: 0;
      padding: 0;
@@ -86,9 +88,57 @@
       background-image: url('../static/images/nba-background.jpg');
       background-size: cover;
       background-repeat: no-repeat;
-      /* width: 200px;  */
+      /* width: 400px;  */
       height: 100vh;
   }
+
+<!-- </style> -->
+
+<style>
+body, html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("../static/images/nba-background.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: black;
+  font-weight: bold;
+  font-size:100%;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 80px;
+  text-align: center;
+}
+
+
+
 </style>
 
 </html>
