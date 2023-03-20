@@ -1,0 +1,31 @@
+,team_id,season_year,team_name,team_conference,team_division,wins,losses,conf_rank,established,lat,lon,next_homegame,avg_price_next_homegame
+0,1610612737,2022-23,Atlanta Hawks,East,Southeast,32,32,8,1949,33.7566,-84.3969,Pistons at Hawks,231
+1,1610612738,2022-23,Boston Celtics,East,Atlantic,45,20,2,1946,42.3653,-71.0618,Pacers at Celtics,928
+2,1610612739,2022-23,Cleveland Cavaliers,East,Central,40,26,4,1970,41.4971,-81.6884,Rockets at Cavaliers,160
+3,1610612740,2022-23,New Orleans Pelicans,West,Southwest,31,33,9,2002,29.949,-90.0821,Spurs at Pelicans,103
+4,1610612741,2022-23,Chicago Bulls,East,Central,29,36,12,1966,41.8806,-87.674,76ers at Bulls,386
+5,1610612742,2022-23,Dallas Mavericks,West,Southwest,33,32,7,1980,32.7904,-96.8103,Warriors at Mavericks,798
+6,1610612743,2022-23,Denver Nuggets,West,Northwest,45,19,1,1976,39.7487,-105.008,Bucks at Nuggets,545
+7,1610612744,2022-23,Golden State Warriors,West,Pacific,34,31,5,1946,37.7704,-122.387,76ers at Warriors,930
+8,1610612745,2022-23,Houston Rockets,West,Southwest,15,49,15,1967,29.7508,-95.3621,Pelicans at Rockets,46
+9,1610612746,2022-23,Los Angeles Clippers,West,Pacific,34,33,8,1970,34.043,-118.267,Thunder at Clippers,182
+10,1610612747,2022-23,Los Angeles Lakers,West,Pacific,31,34,11,1948,34.043,-118.267,Magic at Lakers,286
+11,1610612748,2022-23,Miami Heat,East,Southeast,34,31,7,1988,25.7812,-80.1879,Knicks at Heat,482
+12,1610612749,2022-23,Milwaukee Bucks,East,Central,46,18,1,1968,43.0417,-87.9162,Raptors at Bucks,806
+13,1610612750,2022-23,Minnesota Timberwolves,West,Northwest,34,32,6,1989,44.9795,-93.2761,Hawks at Timberwolves,105
+14,1610612751,2022-23,Brooklyn Nets,East,Atlantic,36,28,6,1976,40.6827,-73.9753,Cavaliers at Nets,178
+15,1610612752,2022-23,New York Knicks,East,Atlantic,39,27,5,1946,40.7509,-73.9943,Timberwolves at Knicks,511
+16,1610612753,2022-23,Orlando Magic,East,Southeast,27,38,13,1989,28.5392,-81.3839,Wizards at Magic,158
+17,1610612754,2022-23,Indiana Pacers,East,Central,29,36,11,1976,39.764,-86.1556,Mavericks at Pacers,228
+18,1610612755,2022-23,Philadelphia 76ers,East,Atlantic,41,22,3,1949,39.9012,-75.172,Bulls at 76ers,312
+19,1610612756,2022-23,Phoenix Suns,West,Pacific,36,29,4,1968,33.4458,-112.071,76ers at Suns,567
+20,1610612757,2022-23,Portland Trail Blazers,West,Northwest,30,34,13,1970,45.5316,-122.667,Clippers at Trail Blazers,147
+21,1610612758,2022-23,Sacramento Kings,West,Pacific,37,26,3,1948,38.5161,-121.417,Celtics at Kings,441
+22,1610612759,2022-23,San Antonio Spurs,West,Southwest,16,49,14,1976,29.4271,-98.4374,Jazz at Spurs,218
+23,1610612760,2022-23,Oklahoma City Thunder,West,Northwest,30,34,12,1967,35.4634,-97.5151,Hornets at Thunder,178
+24,1610612764,2022-23,Washington Wizards,East,Southeast,30,34,10,1961,38.8981,-77.0209,Nuggets at Wizards,234
+25,1610612765,2022-23,Detroit Pistons,East,Central,15,49,15,1948,42.34,-83.0574,Heat at Pistons,54
+26,1610612766,2022-23,Charlotte Hornets,East,Southeast,20,46,14,1988,35.2248,-80.8403,Pacers at Hornets,158
+27,1610612767,2022-23,Toronto Raptors,East,Atlantic,33,36,9,1995,43.6435,-79.3791,Pacers at Raptors,291
+28,1610612768,2022-23,Memphis Grizzlies,West,Southwest,41,26,2,1995,35.1383,-90.0522,Mavericks at Grizzlies,276
+29,1610612769,2022-23,Utah Jazz,West,Northwest,33,36,11,1974,40.7676,-111.901,Kings at Jazz,183

@@ -19,9 +19,15 @@ engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
 Base2 = automap_base()
 Base2.prepare(autoload_with=engine2)
 
-# **Sets up our tables**
+#teams database setup
+engine3 = create_engine("sqlite:///data/teams.sqlite")
+Base3 = automap_base()
+Base3.prepare(autoload_with=engine3)
+
+# **Stores our tables into variable for querying below**
 player_stats = Base.classes.player_stats
 games = Base2.classes.games
+Teams = Base3.classes.teams
 
 # Flask Setup
 app = Flask(__name__, static_folder='static')
@@ -71,7 +77,7 @@ def get_player_stats():
     
     return response
 
-# C. API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION (IN PROGRESS - GAVIN)
+# C. API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION
 team_dict = {
     'Atlanta Hawks': 'ATL','Boston Celtics': 'BOS','Brooklyn Nets': 'BKN','Charlotte Hornets': 'CHA','Chicago Bulls': 'CHI',
     'Cleveland Cavaliers': 'CLE','Dallas Mavericks': 'DAL','Denver Nuggets': 'DEN','Detroit Pistons': 'DET',
@@ -98,7 +104,7 @@ def get_players_by_team(team_code):
         teamplayer['Position']=player[1]
         teamplayer['Age']=player[2]
         teamplayers.append(teamplayer)
-    response = make_response(jsonify({'Roster':teamplayers}))
+    response = make_response(jsonify({f"{team_code}'s Roster":teamplayers}))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
@@ -167,6 +173,34 @@ def get_team_stats():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
     
+@app.route('/api/v1.0/teams')
+def get_teams():
+    session = Session(engine3)
+    teaminfoquery = session.query(Teams.team_name,Teams.established,Teams.team_conference, 
+    Teams.team_division,Teams.conf_rank,Teams.lat, Teams.lon, Teams.next_homegame, 
+    Teams.avg_price_next_homegame).all()
+
+    teaminfo = []
+    for team in teaminfoquery:
+        teaminfo_dict = {}
+        teaminfo_dict["Franchise"] = team[0]
+        teaminfo_dict["Established"] = team[1]
+        teaminfo_dict["Conference"] = team[2]
+        teaminfo_dict["Division"] = team[3]
+        teaminfo_dict["Current_Conference_Rank"] = team[4]
+        teaminfo_dict["Latitude"] = team[5]
+        teaminfo_dict["Longitude"] = team[6]
+        teaminfo_dict["Next_Homegame"] = team[7]
+        teaminfo_dict["Current_Average_Price"] = team[8]
+
+        teaminfo.append(teaminfo_dict)
     
+    response = jsonify(teaminfo)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+@app.route('/api/v1.0/teamsmap')
+def showMap():
+    return render_template('teams_map.html')
+
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
