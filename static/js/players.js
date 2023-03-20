@@ -97,16 +97,6 @@ function buildGaugeChart(player, data) {
 
 }
 
-// // Function that updates dashboard when sample is changed
-// function buildDashboard(value) { 
-
-//   // Log the new value
-//   console.log(value); 
-
-//   // Call all functions 
-//   buildMetadata(value, playersdata);
-//   buildGaugeChart(value, playersdata);
-// };
 
 // Function that updates dashboard when sample is changed
 function optionChanged(value) { 
