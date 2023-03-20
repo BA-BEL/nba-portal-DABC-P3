@@ -2,10 +2,13 @@
 // API endpoint
 const url = "http://127.0.0.1:8000/api/v1.0/games"
 
-main();
+summary();
+
+explore15();
 
 
-function main() {
+// Plot and summarize 15 random samples 
+function explore15() {
 
     d3.json(url).then(function (data) {
 
@@ -94,7 +97,7 @@ function main() {
             data: data_to_plot,
             options: {
                 responsive: true,
-                maintainAspectRatio:false,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'top',
@@ -111,7 +114,7 @@ function main() {
 
         donut = new Chart(ctx, config);
 
-        console.log("Plotted data");
+        console.log("Plotted doughnut data");
     })
 };
 
@@ -202,11 +205,94 @@ function randomize() {
     // donut.destroy();
     // main();
 
-
-
-
 }
 
+
+// Function to summary charts
+
+function summary() {
+    d3.json(url).then(function(data){
+        
+        // initialize arrays that will be averaged for statistics
+        let home_fgm = [];
+        let away_fgm = [];
+        let home_ftm = [];
+        let away_ftm = [];
+        let home_pts = [];
+        let away_pts = [];
+        
+        for(let i = 0; i < data.length; i++){
+            home_fgm.push(data[i].fgm_home);
+            away_fgm.push(data[i].fgm_away);
+            home_ftm.push(data[i].ftm_home);
+            away_ftm.push(data[i].ftm_away);
+            home_pts.push(data[i].pts_home);
+            away_pts.push(data[i].pts_away);
+            
+        }
+
+
+        // Calculate Arithmetic averages for summary arrays
+        let avg_home_fgm = avg(home_fgm);
+        let avg_away_fgm = avg(away_fgm);
+        let avg_home_ftm = avg(home_ftm);
+        let avg_away_ftm = avg(away_ftm);
+        let avg_home_pts = avg(home_pts);
+        let avg_away_pts = avg(away_pts);
+
+        // Create dataset arrays
+        let home_summary = [avg_home_fgm, avg_home_ftm, avg_home_pts]
+        let away_summary = [avg_away_fgm, avg_away_ftm, avg_away_pts]
+
+
+        // Data setup
+
+        const labels = ["FGM", "FTM", "PTS"]
+
+        const data_to_plot = {
+            labels:labels,
+            datasets:[
+                {
+                    label: "Home",
+                    data: home_summary,
+                    borderColor:"rgb(255, 0, 0)",
+                    backgroundColor:"rgb(255, 0, 0, 0.5)"
+                },
+                {
+                    label: "Away",
+                    data: away_summary,
+                    borderColor:"rgb(0, 0, 255)",
+                    backgroundColor:"rgb(0, 0, 255, 0.5)"
+                }
+            ]
+        }
+
+
+        // Config
+        const config = {
+            type:"radar",
+            data:data_to_plot,
+            options:{
+                responsive:true,
+                plugins:{
+                    title:{
+                        display:true,
+                        text:"Summary of Average Scores between Home and Away"
+                    }
+                }
+            }
+        }
+
+        
+        let ctx = document.getElementById("radar1").getContext('2d');
+
+        radar = new Chart(ctx, config);
+
+        console.log("Plotted radar data");
+        
+        
+    });
+}
 
 
 function avg(array) {
@@ -217,8 +303,6 @@ function avg(array) {
     let avg = (sum / array.length)
     return Math.round(avg * 100) / 100
 }
-
-
 
 
 
