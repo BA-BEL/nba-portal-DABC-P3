@@ -72,15 +72,15 @@ function explore15() {
         home_win_rate = Math.round((home_wins / (home_wins + away_wins)) * 100)
 
         // Populate summary stats panel
-        d3.select("#summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
-        d3.select("#summary-stats").append("p").text(`Home wins: ${home_wins}`);
-        d3.select("#summary-stats").append("p").text(`Away wins: ${away_wins}`);
-        d3.select("#summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
-        d3.select("#summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
-        d3.select("#summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
-        d3.select("#summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
-        d3.select("#summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
-        d3.select("#summary-stats").append("p").text(`Average away Points: ${avg_away_pts}`);
+        d3.select("#sample-summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
+        d3.select("#sample-summary-stats").append("p").text(`Home wins: ${home_wins}`);
+        d3.select("#sample-summary-stats").append("p").text(`Away wins: ${away_wins}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away Points: ${avg_away_pts}`);
 
 
 
@@ -182,19 +182,19 @@ function randomize() {
         let avg_away_pts = avg(away_pts);
 
         // Calculate home win rate, formatted in units of percent
-        home_win_rate = Math.round((home_wins / (home_wins + away_wins)) * 100)
+        home_win_rate = Math.round((home_wins / (home_wins + away_wins)) * 10000)/100
 
         // Update summary stats panel
-        d3.select("#summary-stats").html("")
-        d3.select("#summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
-        d3.select("#summary-stats").append("p").text(`Home wins: ${home_wins}`);
-        d3.select("#summary-stats").append("p").text(`Away wins: ${away_wins}`);
-        d3.select("#summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
-        d3.select("#summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
-        d3.select("#summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
-        d3.select("#summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
-        d3.select("#summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
-        d3.select("#summary-stats").append("p").text(`Average away Points: ${avg_away_pts}`);
+        d3.select("#sample-summary-stats").html("")
+        d3.select("#sample-summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
+        d3.select("#sample-summary-stats").append("p").text(`Home wins: ${home_wins}`);
+        d3.select("#sample-summary-stats").append("p").text(`Away wins: ${away_wins}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away Points: ${avg_away_pts}`);
 
         // Update datasets for plot
         donut.data.datasets = datasets;
@@ -208,86 +208,228 @@ function randomize() {
 }
 
 
-// Function to summary charts
+// Function to summary charts and panel
 
 function summary() {
     d3.json(url).then(function(data){
         
+
+        // Initialize summary stats
+        let home_wins = 0;
+        let away_wins = 0;
+
         // initialize arrays that will be averaged for statistics
         let home_fg2m = [];
         let home_fg3m = [];
         let home_ftm = [];
+        let home_ast = [];
         let home_stl = [];
         let home_blk = [];
+        let home_tov = [];
+
+        let home_pts = [];
+
         let away_fg2m = [];
         let away_fg3m = [];
         let away_ftm = [];
+        let away_ast = [];
         let away_stl = [];
         let away_blk = [];
+        let away_tov = [];
         
+        let away_pts = [];
+
         for(let i = 0; i < data.length; i++){
+
+            // Fill summary stats
+            if (data[i].wl_home == "W") {
+                home_wins += 1;
+            } else if (data[i].wl_away == "W") {
+                away_wins += 1;
+            }
 
             home_fg2m.push(data[i].fg2m_home);
             home_fg3m.push(data[i].fg3m_home);
             home_ftm.push(data[i].ftm_home);
+            home_ast.push(data[i].ast_home);
             home_stl.push(data[i].stl_home);
             home_blk.push(data[i].blk_home);
+            home_tov.push(data[i].tov_home);
+
+            home_pts.push(data[i].pts_home);
 
             away_fg2m.push(data[i].fg2m_away);
             away_fg3m.push(data[i].fg3m_away);
             away_ftm.push(data[i].ftm_away);
+            away_ast.push(data[i].ast_away)
             away_stl.push(data[i].stl_away);
             away_blk.push(data[i].blk_away);
+            away_tov.push(data[i].tov_away)
+
+            away_pts.push(data[i].pts_away);
             
         }
 
 
         // Calculate Arithmetic averages for summary arrays
-        let avg_home_fg2m = avg(home_fg2m)
-        let avg_home_fg3m = avg(home_fg3m)
-        let avg_home_ftm = avg(home_ftm)
-        let avg_home_stl = avg(home_stl)
-        let avg_home_blk = avg(home_blk)
+        let avg_home_fg2m = avg(home_fg2m);
+        let avg_home_fg3m = avg(home_fg3m);
+        let avg_home_ftm = avg(home_ftm);
+        let avg_home_ast = avg(home_ast);
+        let avg_home_stl = avg(home_stl);
+        let avg_home_blk = avg(home_blk);
+        let avg_home_tov = avg(home_tov);
 
-        let avg_away_fg2m = avg(away_fg2m)
-        let avg_away_fg3m = avg(away_fg3m)
-        let avg_away_ftm = avg(away_ftm)
-        let avg_away_stl = avg(away_stl)
-        let avg_away_blk = avg(away_blk)
+        let avg_away_fg2m = avg(away_fg2m);
+        let avg_away_fg3m = avg(away_fg3m);
+        let avg_away_ftm = avg(away_ftm);
+        let avg_away_ast = avg(away_ast);
+        let avg_away_stl = avg(away_stl);
+        let avg_away_blk = avg(away_blk);
+        let avg_away_tov = avg(away_tov);
         
+        let avg_home_pts = avg(home_pts);
+        let avg_away_pts = avg(away_pts);
 
 
+        // create Two radar charts:
 
 
-
+        //  1
         // Create dataset arrays
 
-        let home_performance_summary = [avg_home_fg3m, avg_home_stl, avg_home_blk]
-        let away_performance_summary = [avg_away_fg3m, avg_away_stl, avg_away_blk]
+        let home_performance_summary1 = [avg_home_fg3m, avg_home_stl, avg_home_blk]
+        let away_performance_summary1 = [avg_away_fg3m, avg_away_stl, avg_away_blk]
 
 
         // Data setup
 
-        const labels = ["FG3M", "STL","BLK"]
+        const labels1 = ["FG3M", "STL","BLK"]
 
-        const data_to_plot = {
-            labels:labels,
+        const data_to_plot1 = {
+            labels:labels1,
             datasets:[
                 {
                     label: "Home",
-                    data: home_performance_summary,
+                    data: home_performance_summary1,
                     borderColor:"rgb(255, 0, 0, 0.9)",
                     backgroundColor:"rgb(255, 0, 0, 0.5)"
                 },
                 {
                     label: "Away",
-                    data: away_performance_summary,
+                    data: away_performance_summary1,
                     borderColor:"rgb(0, 0, 255, 0.9)",
                     backgroundColor:"rgb(0, 0, 255, 0.5)"
                 }
             ]
         }
 
+
+        // Config
+        const config1 = {
+            type:"radar",
+            data:data_to_plot1,
+            options:{
+                responsive:true,
+                plugins:{
+                    title:{
+                        display:true,
+                        text:"Performance Summary 1: Home v Away"
+                    }
+                }
+            }
+        }
+
+        
+        let ctx = document.getElementById("radar1").getContext('2d');
+
+        radar1 = new Chart(ctx, config1);
+
+        console.log("Plotted radar1 data");
+
+        //  2
+        // Create dataset arrays
+
+        let home_performance_summary2 = [avg_home_fg2m, avg_home_ftm, avg_home_ast]
+        let away_performance_summary2 = [avg_away_fg2m, avg_away_ftm, avg_away_ast]
+
+
+        // Data setup
+
+        const labels2 = ["FG2M", "FTM","AST"]
+
+        const data_to_plot2 = {
+            labels:labels2,
+            datasets:[
+                {
+                    label: "Home",
+                    data: home_performance_summary2,
+                    borderColor:"rgb(255, 0, 0, 0.9)",
+                    backgroundColor:"rgb(255, 0, 0, 0.5)"
+                },
+                {
+                    label: "Away",
+                    data: away_performance_summary2,
+                    borderColor:"rgb(0, 0, 255, 0.9)",
+                    backgroundColor:"rgb(0, 0, 255, 0.5)"
+                }
+            ]
+        }
+
+
+        // Config
+        const config2 = {
+            type:"radar",
+            data:data_to_plot2,
+            options:{
+                responsive:true,
+                plugins:{
+                    title:{
+                        display:true,
+                        text:"Performance Summary 2: Home v Away"
+                    }
+                }
+            }
+        }
+
+        
+        ctx = document.getElementById("radar2").getContext('2d');
+
+        radar2 = new Chart(ctx, config2);
+
+        console.log("Plotted radar2 data");
+
+
+
+        ///INSERT PLOTLY BARCHART CODE HERE
+
+        //DELETE PLACEHOLDER CHART
+        ctx = document.getElementById("bar1").getContext('2d');
+
+        radar3 = new Chart(ctx, config2);
+
+        console.log("Plotted bar data");
+        
+
+        // Calculate home win rate, formatted in units of percent
+        home_win_rate = Math.round((home_wins / (home_wins + away_wins)) * 10000)/100
+
+        // Populate summary stats panel
+        d3.select("#summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
+        d3.select("#summary-stats").append("p").text(`Home wins: ${home_wins}`);
+        d3.select("#summary-stats").append("p").text(`Away wins: ${away_wins}`);
+        d3.select("#summary-stats").append("p").text(`Average home FG2M: ${avg_home_fg2m}`);
+        d3.select("#summary-stats").append("p").text(`Average away FG2M: ${avg_away_fg2m}`);
+        d3.select("#summary-stats").append("p").text(`Average home FG3M: ${avg_home_fg3m}`);
+        d3.select("#summary-stats").append("p").text(`Average away FG3M: ${avg_away_fg3m}`);
+        d3.select("#summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
+        d3.select("#summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
+        d3.select("#summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
+        d3.select("#summary-stats").append("p").text(`Average away Points: ${avg_away_pts}`);
+        
+        
+    });
+}
 
         // Config
         const config = {
@@ -298,22 +440,11 @@ function summary() {
                 plugins:{
                     title:{
                         display:true,
-                        text:"Performance Summary: Home v Away"
+                        text:"Performance Summary 2: Home v Away"
                     }
                 }
             }
         }
-
-        
-        let ctx = document.getElementById("radar1").getContext('2d');
-
-        radar = new Chart(ctx, config);
-
-        console.log("Plotted radar data");
-        
-        
-    });
-}
 
 
 function avg(array) {
