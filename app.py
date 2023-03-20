@@ -129,8 +129,8 @@ def get_team_stats():
     gamesquery = session2.query(games.game_id, games.game_date, games.arena, games.arena_lat, games.arena_lon, games.attendance,
                               games.team_id_home, games.team_id_away, games.team_name_home, games.team_abbreviation_home,
                               games.team_name_away, games.team_abbreviation_away, games.matchup_home, games.wl_home, games.wl_away,
-                              games.fgm_home, games.fga_home, games.fg_pct_home, games.ftm_home, games.fta_home, games.ft_pct_home, games.pts_home,
-                              games.fgm_away, games.fga_away, games.fg_pct_away, games.ftm_away, games.fta_away, games.ft_pct_away, games.pts_away).all()
+                              games.fgm_home, games.fg2m_home, games.fg3m_home, games.fga_home, games.fg_pct_home, games.ftm_home, games.fta_home, games.ft_pct_home,games.ast_home,games.stl_home, games.blk_home, games.tov_home,games.pts_home,
+                              games.fgm_away, games.fg2m_away, games.fg3m_away, games.fga_away, games.fg_pct_away, games.ftm_away, games.fta_away, games.ft_pct_away, games.ast_away,games.stl_away,games.blk_away,games.tov_away, games.pts_away).all()
 
     games_dict_list = []
 
@@ -152,19 +152,31 @@ def get_team_stats():
         game_dict['wl_home']=game[13]
         game_dict['wl_away']=game[14]
         game_dict['fgm_home']=game[15]
-        game_dict['fga_home']=game[16]
-        game_dict['fg_pct_home']=game[17]
-        game_dict['ftm_home']=game[18]
-        game_dict['fta_home']=game[19]
-        game_dict['ft_pct_home']=game[20]
-        game_dict['pts_home']=game[21]
-        game_dict['fgm_away']=game[22]
-        game_dict['fga_away']=game[23]
-        game_dict['fg_pct_away']=game[24]
-        game_dict['ftm_away']=game[25]
-        game_dict['fta_away']=game[26]
-        game_dict['ft_pct_away']=game[27]
-        game_dict['pts_away']=game[28]
+        game_dict['fg2m_home']=game[16]
+        game_dict['fg3m_home']=game[17]
+        game_dict['fga_home']=game[18]
+        game_dict['fg_pct_home']=game[19]
+        game_dict['ftm_home']=game[20]
+        game_dict['fta_home']=game[21]
+        game_dict['ft_pct_home']=game[22]
+        game_dict['ast_home']=game[23]
+        game_dict['stl_home']=game[24]
+        game_dict['blk_home']=game[25]
+        game_dict['tov_home']=game[26]
+        game_dict['pts_home']=game[27]
+        game_dict['fgm_away']=game[28]
+        game_dict['fg2m_away']=game[29]
+        game_dict['fg3m_away']=game[30]
+        game_dict['fga_away']=game[31]
+        game_dict['fg_pct_away']=game[32]
+        game_dict['ftm_away']=game[33]
+        game_dict['fta_away']=game[34]
+        game_dict['ft_pct_away']=game[35]
+        game_dict['ast_away']=game[36]
+        game_dict['stl_away']=game[37]
+        game_dict['blk_away']=game[38]
+        game_dict['tov_away']=game[39]
+        game_dict['pts_away']=game[40]
 
 
         games_dict_list.append(game_dict)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,12 @@
     <title>G8 Teams Visualizations</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-     crossorigin=""/>
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <!-- Plotly Script -->
     <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
 
@@ -23,16 +24,92 @@
 <body>
 
     <!-- ------------ -->
-    <div class = "container" style = "position: relative; height: 50vh; width:50vw">
-        <canvas id="testmap"></canvas>
-        <br>
-        <div class = "container" style = "text-align:center;">
-            <button id = "randomizer1" onclick = "randomize()">Randomize</button>
-            <br>
-            <p id = "loadingtext1"></p>
-         </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center">
+                <h1>NBA Games</h1>
+                <p>Explore NBA game data from 1956</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <hr style="border-color:rgba(0, 0, 0, 0.072); border-width: 0.1vw">
+            <h2 style="text-align: center;">Explore all games</h2>
+            <hr style="border-color:rgba(0, 0, 0, 0.246); border-width: 0.1vw">
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="container">
+                    <div id="radar1container">
+                        <canvas id="radar1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="container">
+                <hr style="border-color:rgba(0, 0, 0, 0.072); border-width: 0.1vw">
+                <h2 style="text-align: center;">Explore 15 random games</h2>
+                <hr style="border-color:rgba(0, 0, 0, 0.246); border-width: 0.1vw">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="container">
+                    <button id="randomizer1" onclick="randomize()">Randomize</button>
+                    <br>
+                    <p id="loadingtext1"></p>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Summary</h3>
+                    </div>
+                    <div id="summary-stats" class="panel-body"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <style>
+                    #radar1container {
+                        height: 40vh;
+                        width: 40vw;
+                    }
+
+
+                    #doughnutcontainer1 {
+                        height: 80vh;
+                        width: 80vw;
+                        position: relative;
+                        right: 30%;
+                    }
+
+                    @media screen and (max-width:768px) {
+                        #doughnutcontainer1 {
+                            position: relative;
+                            right: auto;
+                            left: 4%;
+                        }
+                    }
+                </style>
+                <div id="doughnutcontainer1">
+
+                    <canvas id="doughnutmap1"></canvas>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
     </div>
-    
+
+
 
 
 
@@ -40,20 +117,20 @@
 
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
     <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" 
-    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <!-- D3 -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <!-- Our JS -->
-    <script src = "./../static/js/teams.js"></script> 
+    <script src="./../static/js/teams.js"></script>
 
 </body>
+
 </html>
