@@ -84,7 +84,7 @@ let southwestLayer = L.layerGroup();
       "Indiana Pacers":"navy",
       "Philadelphia 76ers":"mediumblue",
       "Phoenix Suns":"orange",
-      "Portland Trail Blazers":"grey",
+      "Portland Trail Blazers":"black",
       "Sacramento Kings":"silver",
       "San Antonio Spurs":"black",
       "Oklahoma City Thunder":"orange",
@@ -95,7 +95,10 @@ let southwestLayer = L.layerGroup();
       "Memphis Grizzlies":"grey",
       "Utah Jazz":"navy"
     }
-
+    
+    function onMouseOut(e) {
+      e.target.setStyle({ fillOpacity: 0.6, opacity:0.6 });
+    }
 
     data.forEach(function(team){
       let circle = L.circle([team.Latitude, team.Longitude],{
@@ -103,16 +106,24 @@ let southwestLayer = L.layerGroup();
         color: teamOuters[team.Franchise],
         weight: 5,
         fillColor:teamColors[team.Franchise],
-        fillOpacity:0.9
+        opacity:0.6,
+        fillOpacity:0.6
       });
+
+      circle.on('mouseover', function(e) {
+        e.target.setStyle({ fillOpacity: 1, opacity: 1 });
+      });
+    
+      circle.on('mouseout', onMouseOut);
       
       let popupContent = "<h3>"+team.Franchise+"</h3><hr>Established: "+team.Established+"<br>Division: "+
       team.Division+"<br>Current Conference Ranking: "+team.Current_Conference_Rank+"<hr>Next Home Game: "+team.Next_Homegame+
       "<br>Average ticket price next home: $"+team.Current_Average_Price;
 
       let popup=L.popup().setLatLng([team.Latitude,team.Longitude]).setContent(popupContent)
-
-      circle.bindTooltip(popupContent).openTooltip();
+      
+      // Add this line if you want popup displayed on-hover!!
+      // circle.bindTooltip(popupContent).openTooltip();
 
       circle.on('click',function(e){
         if (openPopup) {
@@ -120,7 +131,8 @@ let southwestLayer = L.layerGroup();
         };
         myMap.flyTo(e.latlng,myMap.getZoom()+4);
         popup.openOn(myMap);
-        openpOPUP = popup;
+        openPopup = popup;
+        e.stopPropagation();
       });
 
       circle.on('mouseover',onMouseOver);
@@ -129,7 +141,7 @@ let southwestLayer = L.layerGroup();
       myMap.on('click',function(e){
         if (openPopup) {
           myMap.closePopup(openPopup);
-          myMap.setView([37.8, -96], 3);
+          myMap.setView([37.8, -96], 5);
           openPopup = null;
         }
       });

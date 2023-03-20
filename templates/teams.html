@@ -40,14 +40,29 @@
 
         <div class="row">
             <div class="container">
-                <div class="container">
-                    <div id="radar1container">
-                        <canvas id="radar1"></canvas>
-                    </div>
+                <div class="col-md-6">
+                    <canvas id="radar1"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="radar2"></canvas>
                 </div>
             </div>
         </div>
-        
+
+        <div class="col-md-12">
+            <div id="bar1container">
+                <canvas id="bar1"></canvas>
+            </div>
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Summary</h3>
+                </div>
+                
+                <div id="summary-stats" class="panel-body"></div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="container">
                 <hr style="border-color:rgba(0, 0, 0, 0.072); border-width: 0.1vw">
@@ -67,18 +82,18 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Summary</h3>
                     </div>
-                    <div id="summary-stats" class="panel-body"></div>
+                    <div id="sample-summary-stats" class="panel-body"></div>
                 </div>
             </div>
 
             <div class="col-md-6">
 
                 <style>
-                    #radar1container {
-                        height: 40vh;
-                        width: 40vw;
+                    #bar1container{
+                        height:50%;
+                        width:50%;
+                        margin:auto;
                     }
-
 
                     #doughnutcontainer1 {
                         height: 80vh;
