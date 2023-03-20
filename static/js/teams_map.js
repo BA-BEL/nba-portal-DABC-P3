@@ -1,3 +1,5 @@
+
+
 let myMap = L.map("map-id",{
   center: [37.8, -96],
   zoom: 5
@@ -54,11 +56,11 @@ let southwestLayer = L.layerGroup();
       "San Antonio Spurs":"silver",
       "Oklahoma City Thunder":"dodgerblue",
       "Washington Wizards":"navy",
-      "Detroit Pistons": "crimson",
+      "Detroit Pistons": "dodgerblue",
       "Charlotte Hornets":"teal",
       "Toronto Raptors":"purple",
       "Memphis Grizzlies":"lightsteelblue",
-      "Utah Jazz":"gold"
+      "Utah Jazz":"yellow"
     }
 
     let teamOuters = {
@@ -80,18 +82,18 @@ let southwestLayer = L.layerGroup();
       "New York Knicks":"orange",
       "Orlando Magic":"grey",
       "Indiana Pacers":"navy",
-      "Philadelphia 76ers":"blue",
+      "Philadelphia 76ers":"mediumblue",
       "Phoenix Suns":"orange",
       "Portland Trail Blazers":"grey",
       "Sacramento Kings":"silver",
       "San Antonio Spurs":"black",
       "Oklahoma City Thunder":"orange",
       "Washington Wizards":"red",
-      "Detroit Pistons": "black",
+      "Detroit Pistons": "crimson",
       "Charlotte Hornets":"purple",
       "Toronto Raptors":"red",
       "Memphis Grizzlies":"grey",
-      "Utah Jazz":"grey"
+      "Utah Jazz":"navy"
     }
 
 
