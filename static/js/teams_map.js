@@ -84,7 +84,7 @@ let southwestLayer = L.layerGroup();
       "Indiana Pacers":"navy",
       "Philadelphia 76ers":"mediumblue",
       "Phoenix Suns":"orange",
-      "Portland Trail Blazers":"grey",
+      "Portland Trail Blazers":"black",
       "Sacramento Kings":"silver",
       "San Antonio Spurs":"black",
       "Oklahoma City Thunder":"orange",

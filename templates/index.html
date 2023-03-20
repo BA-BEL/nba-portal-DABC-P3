@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
-
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
+	<link rel="icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
 </head>
 <body>
 	<!-- header -->
@@ -23,7 +24,7 @@
 					<p class="text-white mb-4">Find out who's currently on your team's roster here. Or click below to access our full NBA compendium </p>
 					<form method="POST" action="/search">
 					<div class="position-relative">
-						<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter your favourite team here"><i
+						<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter your favourite team here" autocomplete="off"><i
 							class="ti-search search-icon"></i>
 					</div>
 					<button type="submit" class="btn btn-primary mt-3">Search</button>
