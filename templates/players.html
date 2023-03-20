@@ -45,7 +45,7 @@
         <div class="row">
           <div class="col-md-2">
             <div class="well">
-              <h5>Player Name:</h5>
+              <h4 style="background-color: white;">Player Name:</h4>
               <select id="selDataset" onchange="optionChanged(this.value)"></select>
             </div>
             <div class="panel panel-primary">
@@ -62,6 +62,7 @@
             <div id="gauge"></div>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12">
             <div id="bubble"></div>
@@ -108,8 +109,8 @@ body, html {
   background-image: url("../static/images/nba-background.jpg");
 
   /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 
   /* Full height */
   height: 100%;
@@ -136,6 +137,15 @@ body, html {
   padding: 80px;
   text-align: center;
 }
+
+.jumbotron {background-color:transparent !important;
+color: white}
+
+.well {background-color:transparent !important;
+  color: black;}
+
+.panel {background-color:transparent !important;
+  color: white;}
 
 
 
