@@ -36,7 +36,9 @@ console.log(playersname);
 
   // Set the first player from the list
   let player_one = playersname[0];
-  buildDashboard(player_one, data);
+  // buildDashboard(player_one, data);
+  buildMetadata(player_one, data);
+  buildGaugeChart(player_one, data);
 }
 // Function that populates players metadata info
 function buildMetadata(player, data) {
@@ -92,7 +94,8 @@ function buildGaugeChart(player, data) {
     ]
     }
   }];
-    let layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+  
+    let layout = { width: 600, height: 450, paper_bgcolor: "transparent", font: { color: "white", family: "Arial" }, margin: { t: 0, b: 0 } };
     Plotly.newPlot('gauge', trace2, layout);
 
 }
