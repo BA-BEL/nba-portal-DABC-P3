@@ -214,54 +214,75 @@ function summary() {
     d3.json(url).then(function(data){
         
         // initialize arrays that will be averaged for statistics
-        let home_fgm = [];
-        let away_fgm = [];
+        let home_fg2m = [];
+        let home_fg3m = [];
         let home_ftm = [];
+        let home_stl = [];
+        let home_blk = [];
+        let away_fg2m = [];
+        let away_fg3m = [];
         let away_ftm = [];
-        let home_pts = [];
-        let away_pts = [];
+        let away_stl = [];
+        let away_blk = [];
         
         for(let i = 0; i < data.length; i++){
-            home_fgm.push(data[i].fgm_home);
-            away_fgm.push(data[i].fgm_away);
+
+            home_fg2m.push(data[i].fg2m_home);
+            home_fg3m.push(data[i].fg3m_home);
             home_ftm.push(data[i].ftm_home);
+            home_stl.push(data[i].stl_home);
+            home_blk.push(data[i].blk_home);
+
+            away_fg2m.push(data[i].fg2m_away);
+            away_fg3m.push(data[i].fg3m_away);
             away_ftm.push(data[i].ftm_away);
-            home_pts.push(data[i].pts_home);
-            away_pts.push(data[i].pts_away);
+            away_stl.push(data[i].stl_away);
+            away_blk.push(data[i].blk_away);
             
         }
 
 
         // Calculate Arithmetic averages for summary arrays
-        let avg_home_fgm = avg(home_fgm);
-        let avg_away_fgm = avg(away_fgm);
-        let avg_home_ftm = avg(home_ftm);
-        let avg_away_ftm = avg(away_ftm);
-        let avg_home_pts = avg(home_pts);
-        let avg_away_pts = avg(away_pts);
+        let avg_home_fg2m = avg(home_fg2m)
+        let avg_home_fg3m = avg(home_fg3m)
+        let avg_home_ftm = avg(home_ftm)
+        let avg_home_stl = avg(home_stl)
+        let avg_home_blk = avg(home_blk)
+
+        let avg_away_fg2m = avg(away_fg2m)
+        let avg_away_fg3m = avg(away_fg3m)
+        let avg_away_ftm = avg(away_ftm)
+        let avg_away_stl = avg(away_stl)
+        let avg_away_blk = avg(away_blk)
+        
+
+
+
+
 
         // Create dataset arrays
-        let home_summary = [avg_home_fgm, avg_home_ftm, avg_home_pts]
-        let away_summary = [avg_away_fgm, avg_away_ftm, avg_away_pts]
+
+        let home_performance_summary = [avg_home_fg3m, avg_home_stl, avg_home_blk]
+        let away_performance_summary = [avg_away_fg3m, avg_away_stl, avg_away_blk]
 
 
         // Data setup
 
-        const labels = ["FGM", "FTM", "PTS"]
+        const labels = ["FG3M", "STL","BLK"]
 
         const data_to_plot = {
             labels:labels,
             datasets:[
                 {
                     label: "Home",
-                    data: home_summary,
-                    borderColor:"rgb(255, 0, 0)",
+                    data: home_performance_summary,
+                    borderColor:"rgb(255, 0, 0, 0.9)",
                     backgroundColor:"rgb(255, 0, 0, 0.5)"
                 },
                 {
                     label: "Away",
-                    data: away_summary,
-                    borderColor:"rgb(0, 0, 255)",
+                    data: away_performance_summary,
+                    borderColor:"rgb(0, 0, 255, 0.9)",
                     backgroundColor:"rgb(0, 0, 255, 0.5)"
                 }
             ]
@@ -277,7 +298,7 @@ function summary() {
                 plugins:{
                     title:{
                         display:true,
-                        text:"Summary of Average Scores between Home and Away"
+                        text:"Performance Summary: Home v Away"
                     }
                 }
             }

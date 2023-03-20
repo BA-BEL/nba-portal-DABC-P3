@@ -38,18 +38,22 @@
             <hr style="border-color:rgba(0, 0, 0, 0.246); border-width: 0.1vw">
         </div>
 
-        <div class="container">
-            <div class="row">
+        <div class="row">
+            <div class="container">
                 <div class="container">
-                    <canvas id="radar1"></canvas>
+                    <div id="radar1container">
+                        <canvas id="radar1"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="container">
-            <hr style="border-color:rgba(0, 0, 0, 0.072); border-width: 0.1vw">
-            <h2 style="text-align: center;">Explore 15 random games</h2>
-            <hr style="border-color:rgba(0, 0, 0, 0.246); border-width: 0.1vw">
+        <div class="row">
+            <div class="container">
+                <hr style="border-color:rgba(0, 0, 0, 0.072); border-width: 0.1vw">
+                <h2 style="text-align: center;">Explore 15 random games</h2>
+                <hr style="border-color:rgba(0, 0, 0, 0.246); border-width: 0.1vw">
+            </div>
         </div>
 
         <div class="row">
@@ -70,6 +74,12 @@
             <div class="col-md-6">
 
                 <style>
+                    #radar1container {
+                        height: 40vh;
+                        width: 40vw;
+                    }
+
+
                     #doughnutcontainer1 {
                         height: 80vh;
                         width: 80vw;
