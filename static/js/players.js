@@ -69,12 +69,12 @@ function buildMetadata(player, data) {
 
 };
 
-// Function that builds the Gauge chart
 
+// Function that builds the Gauge chart
 function buildGaugeChart(player, data) {
  
   let playerinfo = data;
-  // Filter based on the value of the sample
+  // Filter based on the value of the name
   let value = playerinfo.find(result => result.Name == player);
   console.log(value), value.Played;  
   let freq=value.Played
@@ -100,6 +100,63 @@ function buildGaugeChart(player, data) {
 
 }
 
+function polar(){
+  const data = {
+    labels: [
+      '2p%',
+      '3p%',
+      'Assists',
+      'Free%',
+      'Points_pg',
+      'Blocks',
+      'Fouls',
+      'Rebounds',
+      'Steals',
+      'Turnovers'
+      
+  
+    ],
+    datasets: [{
+      label: 'Offensive stats',
+      data: [65, 59, 90, 81, 56, 55, 40],
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      pointBackgroundColor: 'rgb(255, 99, 132)',
+      pointHoverBorderColor: 'rgb(255, 99, 132)'
+    }, {
+      label: 'defensive stats',
+      data: [28, 48, 40, 19, 96, 27, 100],
+      fill: true,
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgb(54, 162, 235)',
+      pointBackgroundColor: 'rgb(54, 162, 235)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(54, 162, 235)'
+    }]
+  };
+  
+  const config = {
+    type: 'polarArea',
+    data: data,
+    options: {
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      }
+    },
+  };
+  
+  let ctx = document.getElementById("polar").getContext('2d');
+  
+  polarchart = new Chart(ctx, config);
+  
+  console.log("Plotted polar chart");
+}
+
+
 
 // Function that updates dashboard when sample is changed
 function optionChanged(value) { 
@@ -117,4 +174,4 @@ function optionChanged(value) {
 // Call the initialize function
 init();
 
-
+polar();
