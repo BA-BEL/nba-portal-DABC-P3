@@ -228,11 +228,13 @@ def get_teams():
 @app.route('/games')
 def getGames():
     return render_template('games.html')
-    
+
 # I) ROUTE FOR TEAMS MAP WEBPAGE
 @app.route('/teamsmap')
 def showMap():
     return render_template('teams_map.html')
+
+############# END OF WEB PAGE ROUTES #############
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
