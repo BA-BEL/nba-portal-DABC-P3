@@ -12,17 +12,20 @@ import requests
 #Player database setup
 engine1 = create_engine("sqlite:///data/player_stats.sqlite")
 Base = automap_base()
-Base.prepare(autoload_with=engine1)
+# Base.prepare(autoload_with=engine1)
+Base.prepare(engine1, reflect=True)
 
 # #Games database setup
 engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
 Base2 = automap_base()
-Base2.prepare(autoload_with=engine2)
+# Base2.prepare(autoload_with=engine2)
+Base2.prepare(engine2, reflect=True)
 
 #teams database setup
 engine3 = create_engine("sqlite:///data/teams.sqlite")
 Base3 = automap_base()
-Base3.prepare(autoload_with=engine3)
+# Base3.prepare(autoload_with=engine3)
+Base3.prepare(engine3, reflect=True)
 
 # **Stores our tables into variable for querying below**
 player_stats = Base.classes.player_stats
