@@ -21,7 +21,13 @@ Using Flask and other libraries in Python and Javascript, this project consolida
 ---
 ## File and code Usage
 
-`FILL HOW TO RUN THE CODE AND BOOT UP SITE HERE`
+- Navigate to the the directory where the repository is located
+
+- Activate the virtual environment with the python dependencies installed (For DABC assessors, running `conda activate PythonData` will suffice)
+
+- Finally, run `python app.py` and the Flask API will initialize and the home page will open up
+
+    * The viz portal can then be explored
 
 
 ### Python Dependencies and JavaScript Libraries
@@ -36,6 +42,7 @@ Using Flask and other libraries in Python and Javascript, this project consolida
 - [Requests](https://pypi.org/project/requests/)
 - [os](https://docs.python.org/3/library/os.html)
 - [csv](https://docs.python.org/3/library/csv.html)
+- [webbrowser](https://docs.python.org/3/library/webbrowser.html)
 
 #### JavaScript: 
 (There is no need to install anything, but here is a list of the libraries used)
