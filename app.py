@@ -109,6 +109,7 @@ def get_players_by_team(team_code):
         teamplayers.append(teamplayer)
     response = make_response(jsonify({f"{team_code}'s Roster":teamplayers}))
     response.headers.add('Access-Control-Allow-Origin', '*')
+    response.set_data(response.get_data(as_text=True).replace('},', '},\n'))
     return response
 
 @app.route('/search',methods=['POST'])

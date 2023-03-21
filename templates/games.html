@@ -50,15 +50,15 @@
         </div>
 
         <div class="col-md-12">
-            <div id="bar1container">
-                <canvas id="bar1"></canvas>
+            <div id="box1container">
+                <canvas id="box1"></canvas>
             </div>
-            
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Summary</h3>
                 </div>
-                
+
                 <div id="summary-stats" class="panel-body"></div>
             </div>
         </div>
@@ -89,12 +89,6 @@
             <div class="col-md-6">
 
                 <style>
-                    #bar1container{
-                        height:50%;
-                        width:50%;
-                        margin:auto;
-                    }
-
                     #doughnutcontainer1 {
                         height: 80vh;
                         width: 80vw;
@@ -139,12 +133,17 @@
         integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+    <!-- Chart.js box/violin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-chart-box-and-violin-plot/4.0.0/Chart.BoxPlot.min.js"
+        integrity="sha512-z2lEnxnLHbu/Vp4PxvIyCCy/QX1mmq2ocpgqTf50xeSDn35VTra3gUi7Qs53qSLj99aJ9SMtqP08UFt+lJmHxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript"
+        src="https://unpkg.com/@sgratzl/chartjs-chart-boxplot@3.6.0/build/index.umd.min.js"></script>
     <!-- D3 -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <!-- Our JS -->
-    <script src="./../static/js/teams.js"></script>
+    <script src="./../static/js/games.js"></script>
 
 </body>
 
