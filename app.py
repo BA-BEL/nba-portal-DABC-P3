@@ -1,4 +1,4 @@
-#Imports dependencies
+#IMPORTS DEPENDENCIES
 import numpy as np
 import datetime as dt
 import sqlalchemy
@@ -9,39 +9,41 @@ from flask import Flask, url_for, jsonify, render_template, request, abort, make
 import datetime as dt
 import requests
 
-#Player database setup
+#PLAYERS DATABASE SETUP
 engine1 = create_engine("sqlite:///data/player_stats.sqlite")
 Base = automap_base()
 # Base.prepare(autoload_with=engine1)
 Base.prepare(engine1, reflect=True)
 
-# #Games database setup
+# GAMES DATABASE SETUP
 engine2 = create_engine("sqlite:///data/Bel-db/NBA.sqlite")
 Base2 = automap_base()
 # Base2.prepare(autoload_with=engine2)
 Base2.prepare(engine2, reflect=True)
 
-#teams database setup
+#TEAMS DATABASE SETUP
 engine3 = create_engine("sqlite:///data/teams.sqlite")
 Base3 = automap_base()
 # Base3.prepare(autoload_with=engine3)
 Base3.prepare(engine3, reflect=True)
 
-# **Stores our tables into variable for querying below**
+# STORES TABLES INTO VARIABLES
 player_stats = Base.classes.player_stats
 games = Base2.classes.games
 Teams = Base3.classes.teams
 
-# Flask Setup
+# FLASK SETUP
 app = Flask(__name__, static_folder='static')
 app.config['JSON_SORT_KEYS'] = False
 
-# A. FLASK HOMEROUTE
+# A) HOME ROUTE
 @app.route("/",methods=['GET','POST'])
 def home():
     return render_template('index.html')
 
-# B. API ENDPOINT FOR ALL PLAYER STATS FOR DROPDOWN PAGE
+############# START OF API ROUTES #############
+
+# B) API ENDPOINT FOR ALL PLAYER STATS FOR DROPDOWN PAGE
 @app.route("/api/v1.0/players", methods = ['GET','POST'])
 def get_player_stats():
     
@@ -80,7 +82,7 @@ def get_player_stats():
     
     return response
 
-# C. API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION
+# C) API ENDPOINT FOR HOMEPAGE USER-INPUTTED PLAYER INFORMATION
 team_dict = {
     'Atlanta Hawks': 'ATL','Boston Celtics': 'BOS','Brooklyn Nets': 'BKN','Charlotte Hornets': 'CHA','Chicago Bulls': 'CHI',
     'Cleveland Cavaliers': 'CLE','Dallas Mavericks': 'DAL','Denver Nuggets': 'DEN','Detroit Pistons': 'DET',
@@ -112,6 +114,7 @@ def get_players_by_team(team_code):
     response.set_data(response.get_data(as_text=True).replace('},', '},\n'))
     return response
 
+# D) ROUTE FOR RETURNING PLAYER DATA BASED ON USER'S INPUT OF FAVOURITE TEAM
 @app.route('/search',methods=['POST'])
 def search_players_by_team():
     team_name = request.form['team_name']
@@ -125,7 +128,7 @@ def search_players_by_team():
         return players
 
 
-# D. API ENDPOINT FOR BEL'S GAME DATA ANALYSIS:
+# E) API ENDPOINT FOR GAME DATA ANALYSIS:
 @app.route("/api/v1.0/games", methods = ['GET','POST'])
 def get_team_stats():
     
@@ -188,7 +191,8 @@ def get_team_stats():
     response = jsonify(games_dict_list)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-    
+
+#F) API ENDPOINT FOR TEAMS DATA    
 @app.route('/api/v1.0/teams')
 def get_teams():
     session = Session(engine3)
@@ -214,7 +218,19 @@ def get_teams():
     response = jsonify(teaminfo)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-@app.route('/api/v1.0/teamsmap')
+############# END OF API ROUTES #############
+
+############# START OF WEB PAGE ROUTES #############
+
+# G) ROUTE FOR PLAYERS STATS PAGE
+
+# H) ROUTE FOR GAMES STATS PAGE
+@app.route('/games')
+def getGames():
+    return render_template('games.html')
+    
+# I) ROUTE FOR TEAMS MAP WEBPAGE
+@app.route('/teamsmap')
 def showMap():
     return render_template('teams_map.html')
 

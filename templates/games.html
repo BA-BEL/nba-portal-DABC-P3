@@ -16,7 +16,8 @@
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <!-- Plotly Script -->
     <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
-
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
+	<link rel="icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
 </head>
 
 
@@ -143,7 +144,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <!-- Our JS -->
-    <script src="./../static/js/games.js"></script>
+    <script src="{{ url_for('static', filename='js/games.js') }}"></script>
 
 </body>
 

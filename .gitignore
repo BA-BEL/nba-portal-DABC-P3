@@ -133,3 +133,6 @@ dmypy.json
 # large nba database and dataset
 data/nba.sqlite
 data/csv
+
+#API key and client information
+config.py
