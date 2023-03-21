@@ -13,7 +13,8 @@
      crossorigin=""/>
     <!-- Plotly Script -->
     <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
-    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
+	  <link rel="icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
 </head>
 
 
@@ -44,8 +45,9 @@
         </div>
         <div class="row">
           <div class="col-md-2">
+            
             <div class="well">
-              <h5>Player Name:</h5>
+              <h4 style="background-color: white;">Player Name:</h4>
               <select id="selDataset" onchange="optionChanged(this.value)"></select>
             </div>
             <div class="panel panel-primary">
@@ -54,6 +56,7 @@
               </div>
               <div id="sample-metadata" class="panel-body"></div>
             </div>
+            <button type="button" class="btn btn-primary btn-lg">Take me home</button>
           </div>
           <div class="col-md-5">
             <div id="bar"></div>
@@ -62,6 +65,7 @@
             <div id="gauge"></div>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12">
             <div id="bubble"></div>
@@ -80,7 +84,7 @@
 </body>
 
 <!-- <style> -->
-  * {
+  <!-- * {
       margin: 0;
      padding: 0;
   }
@@ -90,13 +94,17 @@
       background-repeat: no-repeat;
       /* width: 400px;  */
       height: 100vh;
-  }
+  } -->
 
 <!-- </style> -->
 
 <style>
 body, html {
-  height: 100%;
+  height: 112%;
+}
+
+select {
+  max-width: 100%;
 }
 
 * {
@@ -108,14 +116,14 @@ body, html {
   background-image: url("../static/images/nba-background.jpg");
 
   /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 
   /* Full height */
   height: 100%;
 
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position: centre;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -128,14 +136,23 @@ body, html {
   font-size:100%;
   border: 3px solid #f1f1f1;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   width: 100%;
-  padding: 80px;
+  padding: 100px;
   text-align: center;
 }
+
+.jumbotron {background-color:transparent !important;
+color: white}
+
+.well {background-color:transparent !important;
+  color: black;}
+
+.panel {background-color:transparent !important;
+  color: white;}
 
 
 
