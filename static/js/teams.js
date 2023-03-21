@@ -401,14 +401,62 @@ function summary() {
 
 
 
-        ///INSERT PLOTLY BARCHART CODE HERE
+        ///INSERT BARCHART CODE HERE
+        // Create dataset arrays
 
-        //DELETE PLACEHOLDER CHART
-        ctx = document.getElementById("bar1").getContext('2d');
+        let home_performance_summary3 = [home_fg2m, home_fg3m, home_ftm, home_ast, home_stl, home_blk, home_tov]
+        let away_performance_summary3 = [away_fg2m, away_fg3m, away_ftm, away_ast, away_stl, away_blk, away_tov]
 
-        radar3 = new Chart(ctx, config2);
 
-        console.log("Plotted bar data");
+        // Data setup
+
+        const labels3 = ["FG2M", "FG3M", "FTM","AST", "BLK", "TOV"]
+
+        const data_to_plot3 = {
+            labels:labels3,
+            datasets:[
+                {
+                    label: "Home",
+                    data: home_performance_summary3,
+                    borderColor:"rgb(255, 0, 0, 0.9)",
+                    backgroundColor:"rgb(255, 0, 0, 0.2)",
+                    outlierColor:"rgb(255, 0, 0, 0.2)",
+                    padding:10,
+                },
+                {
+                    label: "Away",
+                    data: away_performance_summary3,
+                    borderColor:"rgb(0, 0, 255, 0.9)",
+                    backgroundColor:"rgb(0, 0, 255, 0.2)",
+                    outlierColor:"rgb(0, 0, 255, 0.2)",
+                    padding:10,
+
+                }
+            ]
+        }
+
+
+        // Config
+        const config3 = {
+            type:"boxplot",
+            data:data_to_plot3,
+            options:{
+                responsive:true,
+                plugins:{
+                    title:{
+                        display:true,
+                        text:"Performance Summary 3: Home v Away"
+                    }
+                }
+            }
+        }
+
+        
+        ctx = document.getElementById("box1").getContext('2d');
+
+        box1 = new Chart(ctx, config3);
+
+        console.log("Plotted box1 data");
         
 
         // Calculate home win rate, formatted in units of percent
