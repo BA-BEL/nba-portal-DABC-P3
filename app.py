@@ -8,6 +8,7 @@ from sqlalchemy import create_engine, func
 from flask import Flask, url_for, jsonify, render_template, request, abort, make_response,redirect
 import datetime as dt
 import requests
+import webbrowser
 
 #PLAYERS DATABASE SETUP
 engine1 = create_engine("sqlite:///data/player_stats.sqlite")
@@ -236,5 +237,10 @@ def showMap():
 
 ############# END OF WEB PAGE ROUTES #############
 
+webbrowser.open("http://127.0.0.1:8000/")
+
 if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+    app.run(debug=True, use_reloader = False, port=8000)
+
+
+
