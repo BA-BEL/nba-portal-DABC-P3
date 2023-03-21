@@ -27,11 +27,25 @@ function explore15() {
         //  Initialize panel Summary stats objects
         let home_wins = 0;
         let away_wins = 0;
-        let home_fgm = [];
-        let away_fgm = [];
+
+        let home_fg2m = [];
+        let home_fg3m = [];
         let home_ftm = [];
-        let away_ftm = [];
+        let home_ast = [];
+        let home_stl = [];
+        let home_blk = [];
+        let home_tov = [];
+
         let home_pts = [];
+
+        let away_fg2m = [];
+        let away_fg3m = [];
+        let away_ftm = [];
+        let away_ast = [];
+        let away_stl = [];
+        let away_blk = [];
+        let away_tov = [];
+        
         let away_pts = [];
 
         // Using a for of loop, iterate through the r15 array to grab 15 random samples
@@ -51,20 +65,45 @@ function explore15() {
             } else if (data[i].wl_away == "W") {
                 away_wins += 1;
             }
-            home_fgm.push(data[i].fgm_home);
+            home_fg2m.push(data[i].fg2m_home);
+            home_fg3m.push(data[i].fg3m_home);
             home_ftm.push(data[i].ftm_home);
+            home_ast.push(data[i].ast_home);
+            home_stl.push(data[i].stl_home);
+            home_blk.push(data[i].blk_home);
+            home_tov.push(data[i].tov_home);
+
             home_pts.push(data[i].pts_home);
-            away_fgm.push(data[i].fgm_away);
+
+            away_fg2m.push(data[i].fg2m_away);
+            away_fg3m.push(data[i].fg3m_away);
             away_ftm.push(data[i].ftm_away);
+            away_ast.push(data[i].ast_away)
+            away_stl.push(data[i].stl_away);
+            away_blk.push(data[i].blk_away);
+            away_tov.push(data[i].tov_away)
+
             away_pts.push(data[i].pts_away);
 
         };
 
         // Calculate Arithmetic averages for summary arrays
-        let avg_home_fgm = avg(home_fgm);
-        let avg_away_fgm = avg(away_fgm);
+        let avg_home_fg2m = avg(home_fg2m);
+        let avg_home_fg3m = avg(home_fg3m);
         let avg_home_ftm = avg(home_ftm);
+        let avg_home_ast = avg(home_ast);
+        let avg_home_stl = avg(home_stl);
+        let avg_home_blk = avg(home_blk);
+        let avg_home_tov = avg(home_tov);
+
+        let avg_away_fg2m = avg(away_fg2m);
+        let avg_away_fg3m = avg(away_fg3m);
         let avg_away_ftm = avg(away_ftm);
+        let avg_away_ast = avg(away_ast);
+        let avg_away_stl = avg(away_stl);
+        let avg_away_blk = avg(away_blk);
+        let avg_away_tov = avg(away_tov);
+        
         let avg_home_pts = avg(home_pts);
         let avg_away_pts = avg(away_pts);
 
@@ -75,8 +114,10 @@ function explore15() {
         d3.select("#sample-summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
         d3.select("#sample-summary-stats").append("p").text(`Home wins: ${home_wins}`);
         d3.select("#sample-summary-stats").append("p").text(`Away wins: ${away_wins}`);
-        d3.select("#sample-summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
-        d3.select("#sample-summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FG2M: ${avg_home_fg2m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FG2M: ${avg_away_fg2m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FG3M: ${avg_home_fg3m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FG3M: ${avg_away_fg3m}`);
         d3.select("#sample-summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
         d3.select("#sample-summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
         d3.select("#sample-summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
@@ -140,11 +181,25 @@ function randomize() {
         //  Initialize panel Summary stats objects
         let home_wins = 0;
         let away_wins = 0;
-        let home_fgm = [];
-        let away_fgm = [];
+
+        let home_fg2m = [];
+        let home_fg3m = [];
         let home_ftm = [];
-        let away_ftm = [];
+        let home_ast = [];
+        let home_stl = [];
+        let home_blk = [];
+        let home_tov = [];
+
         let home_pts = [];
+
+        let away_fg2m = [];
+        let away_fg3m = [];
+        let away_ftm = [];
+        let away_ast = [];
+        let away_stl = [];
+        let away_blk = [];
+        let away_tov = [];
+        
         let away_pts = [];
 
         // Using a for of loop, iterate through the r15 array to grab 15 random samples
@@ -164,22 +219,49 @@ function randomize() {
             } else if (data[i].wl_away == "W") {
                 away_wins += 1;
             }
-            home_fgm.push(data[i].fgm_home);
+
+            home_fg2m.push(data[i].fg2m_home);
+            home_fg3m.push(data[i].fg3m_home);
             home_ftm.push(data[i].ftm_home);
+            home_ast.push(data[i].ast_home);
+            home_stl.push(data[i].stl_home);
+            home_blk.push(data[i].blk_home);
+            home_tov.push(data[i].tov_home);
+
             home_pts.push(data[i].pts_home);
-            away_fgm.push(data[i].fgm_away);
+
+            away_fg2m.push(data[i].fg2m_away);
+            away_fg3m.push(data[i].fg3m_away);
             away_ftm.push(data[i].ftm_away);
+            away_ast.push(data[i].ast_away)
+            away_stl.push(data[i].stl_away);
+            away_blk.push(data[i].blk_away);
+            away_tov.push(data[i].tov_away)
+
             away_pts.push(data[i].pts_away);
 
         };
 
         // Calculate Arithmetic averages for summary arrays
-        let avg_home_fgm = avg(home_fgm);
-        let avg_away_fgm = avg(away_fgm);
+        let avg_home_fg2m = avg(home_fg2m);
+        let avg_home_fg3m = avg(home_fg3m);
         let avg_home_ftm = avg(home_ftm);
+        let avg_home_ast = avg(home_ast);
+        let avg_home_stl = avg(home_stl);
+        let avg_home_blk = avg(home_blk);
+        let avg_home_tov = avg(home_tov);
+
+        let avg_away_fg2m = avg(away_fg2m);
+        let avg_away_fg3m = avg(away_fg3m);
         let avg_away_ftm = avg(away_ftm);
+        let avg_away_ast = avg(away_ast);
+        let avg_away_stl = avg(away_stl);
+        let avg_away_blk = avg(away_blk);
+        let avg_away_tov = avg(away_tov);
+        
         let avg_home_pts = avg(home_pts);
         let avg_away_pts = avg(away_pts);
+
 
         // Calculate home win rate, formatted in units of percent
         home_win_rate = Math.round((home_wins / (home_wins + away_wins)) * 10000)/100
@@ -189,8 +271,10 @@ function randomize() {
         d3.select("#sample-summary-stats").append("p").append("strong").text(`Home win rate: ${home_win_rate}%`)
         d3.select("#sample-summary-stats").append("p").text(`Home wins: ${home_wins}`);
         d3.select("#sample-summary-stats").append("p").text(`Away wins: ${away_wins}`);
-        d3.select("#sample-summary-stats").append("p").text(`Average home FGM: ${avg_home_fgm}`);
-        d3.select("#sample-summary-stats").append("p").text(`Average away FGM: ${avg_away_fgm}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FG2M: ${avg_home_fg2m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FG2M: ${avg_away_fg2m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average home FG3M: ${avg_home_fg3m}`);
+        d3.select("#sample-summary-stats").append("p").text(`Average away FG3M: ${avg_away_fg3m}`);
         d3.select("#sample-summary-stats").append("p").text(`Average home FTM: ${avg_home_ftm}`);
         d3.select("#sample-summary-stats").append("p").text(`Average away FTM: ${avg_away_ftm}`);
         d3.select("#sample-summary-stats").append("p").text(`Average home Points: ${avg_home_pts}`);
@@ -201,6 +285,7 @@ function randomize() {
         donut.update();
 
         d3.select("#loadingtext1").text("");
+        console.log("doughnut data randomized");
     });
     // donut.destroy();
     // main();
@@ -442,6 +527,7 @@ function summary() {
             data:data_to_plot3,
             options:{
                 responsive:true,
+                maintainAspectRatio:true,
                 plugins:{
                     title:{
                         display:true,
@@ -478,21 +564,6 @@ function summary() {
         
     });
 }
-
-        // Config
-        const config = {
-            type:"radar",
-            data:data_to_plot,
-            options:{
-                responsive:true,
-                plugins:{
-                    title:{
-                        display:true,
-                        text:"Performance Summary 2: Home v Away"
-                    }
-                }
-            }
-        }
 
 
 function avg(array) {
