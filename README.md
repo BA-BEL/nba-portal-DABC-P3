@@ -6,6 +6,8 @@
 
 ### Interactive NBA Portal
 
+![alt_nba_logo](https://www.edigitalagency.com.au/wp-content/uploads/NBA-logo-png.png)
+
 This project focused on creating an interactive visualization portal using a combination of:
 
 - Python,
@@ -14,7 +16,7 @@ This project focused on creating an interactive visualization portal using a com
 - CSS, and
 - Javascript
 
-Using Flask's and a further combination of other libraries in Python and Javascript, this project consolidates databases to produce visualizations about NBA player, team, and game data.
+Using Flask and other libraries in Python and Javascript, this project consolidates databases to produce visualizations about NBA player, team, and game data.
 
 ---
 ## File and code Usage
@@ -42,7 +44,6 @@ Using Flask's and a further combination of other libraries in Python and Javascr
 - [Plotly](https://plotly.com/)
 - [Leaflet](https://leafletjs.com/)
 - [Chart.js](https://www.chartjs.org/)
-
 
 
 ---
