@@ -109,23 +109,11 @@ function buildGaugeChart(player, data) {
 
 }
 
-function polar(value ) {
+function polar(value) {
 
   let index = parseInt(value);
 
   d3.json(url).then(function (data) {
-
-    // assign values to object for indentified player (default id = index = 0) 
-    // let fg2pct = data[index].2p%;
-    // let fg3pct = data[index].3p%;
-    // let ast = data[index].Assists;
-    // let ftpct = data[index].Free%;
-    // let stl = data[index].Steals
-    // let blk = data[index].Blocks;
-    // let tov = data[index].Turnovers;
-    // let reb = data[index].Rebounds;
-    // let pf = data[index].Fouls;
-    // let pts = data[index].Points_pg;
 
     let fg2pct = data[index]["2p%"];
     let fg3pct = data[index]["3p%"];
@@ -217,29 +205,19 @@ function polarUpdate(value) {
 
   d3.json(url).then(function (data) {
 
-    // assign values to object for indentified player (default id = index = 0) 
-    // let fg2pct = data[index].2p%;
-    // let fg3pct = data[index].3p%;
-    // let ast = data[index].Assists;
-    // let ftpct = data[index].Free%;
-    // let stl = data[index].Steals
-    // let blk = data[index].Blocks;
-    // let tov = data[index].Turnovers;
-    // let reb = data[index].Rebounds;
-    // let pf = data[index].Fouls;
-    // let pts = data[index].Points_pg;
-
     let fg2pct = data[index]["2p%"];
     let fg3pct = data[index]["3p%"];
     let ast = data[index].Assists;
     let ftpct = data[index]["Free%"];
-    let stl = data[index].Steals
+    let stl = data[index].Steals;
     let blk = data[index].Blocks;
     let reb = data[index].Rebounds;
     let pf = data[index].Fouls;
+    let ppg = data[index].Points_pg;
+    let turn = data[index].Turnovers
 
     // create array for this
-    let datarray = [fg2pct, fg3pct, ast, ftpct, stl, blk, reb, pf];
+    let datarray = [fg2pct, fg3pct, ast, ftpct, stl, blk, reb, pf, ppg, turn];;
 
     polarchart.data.datasets[0].data = (datarray);
     polarchart.update()
