@@ -227,12 +227,15 @@ def get_teams():
 ############# START OF WEB PAGE ROUTES #############
 
 # G) ROUTE FOR PLAYERS STATS PAGE
-
+@app.route('/players')
+def getPlayers():
+    return render_template('players.html')
+    
 # H) ROUTE FOR GAMES STATS PAGE
 @app.route('/games')
 def getGames():
     return render_template('games.html')
-
+    
 # I) ROUTE FOR TEAMS MAP WEBPAGE
 @app.route('/teamsmap')
 def showMap():
