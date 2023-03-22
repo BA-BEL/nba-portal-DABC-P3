@@ -1,97 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G8 Players Visualizations</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-     crossorigin=""/>
-    <!-- Plotly Script -->
-    <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
-	  <link rel="icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G8 Players Visualizations</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+  <!-- Plotly Script -->
+  <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
+  <link rel="icon" href="{{ url_for('static', filename='images/nbavicon.png') }}" type="image/x-icon">
 </head>
 
 
 <body>
-    <!-- Dependencies -->
+  <!-- <div id="maps"></div> -->
 
-    <!-- Leaflet -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-        <!-- D3 -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>NBA Player Stats!</h1>
+        <p>Explore Individual player stats for season 2022-2023</p>
+        <button type="button" class="btn btn-primary btn-lg">Take me home</button>
+      </div>
+    </div>
 
-    <!-- Our JS -->
-    <script src = "../static/js/players.js"></script>
 
-    <!-- ------------ -->
-    <div id = "maps"></div>
-<div class="container">
- <canvas id="polar"></canvas> 
-</div>
-    
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12 jumbotron text-center">
-            <h1>NBA Player Stats!</h1>
-            <p>Explore Individual player stats for season 2022-2023</p>
-          </div>
+    <div class="row">
+      <div class="col-md-2">
+
+        <div class="well">
+          <h4 style="background-color: white;">Player Name:</h4>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            
-            <div class="well">
-              <h4 style="background-color: white;">Player Name:</h4>
-              <select id="selDataset" onchange="optionChanged(this.value)"></select>
-            </div>
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">Player Info</h3>
-              </div>
-              <div id="sample-metadata" class="panel-body"></div>
-            </div>
-            <button type="button" class="btn btn-primary btn-lg">Take me home</button>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Player Info</h3>
           </div>
-          <div class="col-md-5">
-            <div id="bar"></div>
-          </div>
-          <div class="col-md-5">
-            <div id="gauge"></div>
-          </div>
+          <div id="sample-metadata" class="panel-body"></div>
         </div>
-        
-        <div class="row">
-          <div class="col-md-12">
-            <div id="bubble"></div>
-          </div>
-        </div>
+
       </div>
 
-      <!-- <div class="background-image"></div> -->
-      <div class="bg-image"></div>
+      <div class="col-sm-9">
+        <canvas id="polar"></canvas>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bg-image"></div>
+
+
+  <!-- <div class="bg-image"></div> -->
+
+  <!-- Dependencies -->
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Our JS -->
+  <script src="../static/js/players.js"></script>
+
+  <!-- ------------ -->
+
+  <!-- <div class="background-image"></div> -->
 
 
 
 
 
-      
+
 </body>
 
 <!-- <style> -->
-  <!-- * {
+<!-- * {
       margin: 0;
      padding: 0;
   }
@@ -106,63 +111,74 @@
 <!-- </style> -->
 
 <style>
-body, html {
-  height: 112%;
-}
+  body,
+  html {
+    height: 112%;
+  }
 
-select {
-  max-width: 100%;
-}
+  select {
+    max-width: 100%;
+  }
 
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-.bg-image {
-  /* The image used */
-  background-image: url("../static/images/nba-background.jpg");
+  .bg-image {
+    /* The image used */
+    background-image: url("../static/images/nba-background.jpg");
 
-  /* Add the blur effect */
-  filter: blur(1px);
-  -webkit-filter: blur(1px);
+    /* Add the blur effect */
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
 
-  /* Full height */
-  height: 100%;
+    /* Full height */
+    height: 100%;
 
-  /* Center and scale the image nicely */
-  background-position: centre;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+    /* Center and scale the image nicely */
+    background-position: centre;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
-.container {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  color: black;
-  font-weight: bold;
-  font-size:100%;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 100%;
-  padding: 100px;
-  text-align: center;
-}
+  .container {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/opacity/see-through */
+    color: black;
+    font-weight: bold;
+    font-size: 100%;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+    padding: 100px;
+    text-align: center;
+  }
 
-.jumbotron {background-color:transparent !important;
-color: white}
+  .jumbotron {
+    background-color: transparent !important;
+    color: white
+  }
 
-.well {background-color:transparent !important;
-  color: black;}
+  .well {
+    background-color: transparent !important;
+    color: black;
+  }
 
-.panel {background-color:transparent !important;
-  color: white;}
+  .panel {
+    background-color: transparent !important;
+    color: white;
+  }
 
-
-
+  /* 
+  #polar {
+    margin-top: 20%;
+  } */
 </style>
 
 </html>
