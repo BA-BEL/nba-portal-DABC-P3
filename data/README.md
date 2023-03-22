@@ -20,5 +20,6 @@ This folder contains a database and dataset imported from [this kaggle dataset](
     
 Data was sourced from the [SeatGeak API](https://platform.seatgeek.com/)
 
-- Returns geocoordinates of each team API
+- API Returns geocoordinates of each team in the NBA, in addition to information about upcoming home games and the average price for those games.
     
+    * API data is merged with team establishment data in team_info_common.csv (from first database) and written to merge_df.csv, which is where the team profile information is derived.
