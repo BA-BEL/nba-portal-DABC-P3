@@ -8,6 +8,7 @@ function init() {
   d3.json(url).then((data) => {
     let playersdata = data.map(item => item.Name);
     let playerids = data.map(item => item.id)
+    console.log(data)
     // console.log(playersdata)
     // console.log(playerids)
     // console.log(data)
@@ -95,15 +96,15 @@ function buildGaugeChart(player, data) {
     gauge: {
       axis: { range: [null, 82] },
       steps: [
-        { range: [0, 20], color: "darkblue", text: "benchwarmer" },
-        { range: [20, 40], color: "blue", text: "consistant" },
-        { range: [40, 60], color: "darkred", text: "core player" },
-        { range: [60, 82], color: "red", text: "main man!" }
+        { range: [0, 20], color: "darkblue"},
+        { range: [20, 40], color: "blue"},
+        { range: [40, 60], color: "darkred",},
+        { range: [60, 82], color: "red",}
       ]
     }
   }];
 
-  let layout = { width: 600, height: 450, paper_bgcolor: "transparent", font: { color: "white", family: "Arial" }, margin: { t: 0, b: 0 } };
+  let layout = { width: 600, height: 450, paper_bgcolor: "transparent", font: { color: "black", family: "Arial" }, margin: { t: 0, b: 0 } };
   Plotly.newPlot('gauge', trace2, layout);
 
 }
@@ -130,34 +131,41 @@ function polar(value ) {
     let fg3pct = data[index]["3p%"];
     let ast = data[index].Assists;
     let ftpct = data[index]["Free%"];
-    let stl = data[index].Steals
+    let stl = data[index].Steals;
     let blk = data[index].Blocks;
     let reb = data[index].Rebounds;
     let pf = data[index].Fouls;
+    let ppg = data[index].Points_pg;
+    let turn = data[index].Turnovers
+    ;
 
     // create array for this
-    let datarray = [fg2pct, fg3pct, ast, ftpct, stl, blk, reb, pf];
+    let datarray = [fg2pct, fg3pct, ast, ftpct, stl, blk, reb, pf, ppg, turn];
 
-    let bgcolors = ["rgba(119, 192, 3, 0.7)", 
-                        "rgba(255, 181, 47, 0.7)", 
-                        "rgba(247, 247, 0, 0.7)",
-                        "rgba(255, 128, 0, 0.7)",
-                        "rgba(235, 0, 205, 0.7)",
-                        "rgba(0, 0, 255, 0.7)",
-                        "rgba(0, 184, 249, 0.7)",
-                        "rgba(255, 0, 0, 0.7)"                       
+    let bgcolors = ["rgba(255, 0, 0, 1)", 
+                        "rgba(0, 128, 0, 1)", 
+                        "rgba(0, 0, 255, 1)",
+                        "rgba(0, 0, 0, 1)",
+                        "rgba(128, 128, 128, 1)",
+                        "rgba(255, 255, 0, 1)",
+                        "rgba(255, 165, 0, 1)",
+                        "rgba(128, 0, 128, 1)",
+                        "rgba(255, 192, 203, 1)",
+                        "rgba(173, 216, 230, 1)"                     
                         ]
 
     const data_to_plot = {
       labels: [
-        'FG2%',
-        'FG3%',
-        'AST',
-        'FT%',
-        'STL',
-        'BLK',
-        'REB',
-        'PF'
+        '2 points %',
+        '3 points %',
+        'Assists',
+        'Free throw %',
+        'Steals',
+        'Blocks',
+        'Rebounds',
+        'Fouls',
+        'Points per Game',
+        'Turnovers'
       ],
       datasets: [
         {
@@ -187,7 +195,7 @@ function polar(value ) {
           legend:{
             position:"right",
             align: "start",
-            labels:{color:"white"}
+            labels:{color:"black"}
 
           }
 

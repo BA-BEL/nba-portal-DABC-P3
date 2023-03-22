@@ -35,13 +35,13 @@
       <div class="col-md-2">
 
         <div class="well">
-          <h4 style="background-color: white;">Player Name:</h4>
+          <h4 style="background-color: white (255, 255, 255);">Player Name:</h4>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
 
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Player Info</h3>
+            <h3 class="panel-title">Player Info:</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
@@ -56,13 +56,14 @@
 
 
     <div class="row">
+      <div id="chart-container" style="width: 60%; margin: auto;"> 
       <div class="col-md-5">
         <div id="gauge"></div>
       </div>
     </div>
 
   </div>
-  <div class="bg-image"></div>
+  <!-- <div class="bg-image"></div> -->
 
 
   <!-- <div class="bg-image"></div> -->
@@ -110,7 +111,7 @@
 
 <!-- </style> -->
 
-<style>
+<!-- <style>
   body,
   html {
     height: 112%;
@@ -124,8 +125,8 @@
     box-sizing: border-box;
   }
 
-  .bg-image {
-    /* The image used */
+  .bg-image { -->
+    <!-- /* The image used */
     background-image: url("../static/images/nba-background.jpg");
 
     /* Add the blur effect */
@@ -178,7 +179,7 @@
   /* 
   #polar {
     margin-top: 20%;
-  } */
+  } */ -->
 </style>
 
 </html>
