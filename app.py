@@ -96,6 +96,7 @@ team_dict = {
     'Portland Trail Blazers': 'POR','Sacramento Kings': 'SAC','San Antonio Spurs': 'SAS','Toronto Raptors': 'TOR','Utah Jazz': 'UTA',
     'Washington Wizards': 'WAS'
 }
+
 @app.route("/api/v1.0/players/team/<team_code>",methods=['GET'])
 def get_players_by_team(team_code):
     session = Session(engine1)
