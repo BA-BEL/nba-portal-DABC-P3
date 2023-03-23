@@ -135,4 +135,4 @@ data/nba.sqlite
 data/csv
 
 #API key and client information
-data/config.py
+data/'teams python'/config.py
